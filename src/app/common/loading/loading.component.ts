@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {CommonModule} from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {LoadingService} from 'src/app/common/loading/loading.service';
+import {LoadingService} from './loading.service';
+
 
 @Component({
   selector: 'app-loading',

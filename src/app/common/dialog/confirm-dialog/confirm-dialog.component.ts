@@ -1,9 +1,8 @@
 import {Component, Inject} from '@angular/core';
-import {DebounceClickDirective} from 'src/app/common/directives/debounce-click.directive';
+import {DebounceClickDirective} from '../../directives/debounce-click.directive';
 import {MatButtonModule} from '@angular/material/button';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
-
 
 //translate
 import {TranslateModule} from '@ngx-translate/core';

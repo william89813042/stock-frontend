@@ -14,17 +14,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {TranslateModule} from '@ngx-translate/core';
 
 //service
-import {LoadingService} from 'src/app/common/loading/loading.service';
+import {LoadingService} from '../common/loading/loading.service';
 import {AuthService} from '../auth/auth.service';
 import {ApiLoginService} from './api-login.service';
 
 //防連點
-import {DebounceClickDirective} from 'src/app/common/directives/debounce-click.directive';
+import {DebounceClickDirective} from '../common/directives/debounce-click.directive';
 
 //interface
 import {LoginByAdRequest} from './login.interface';
 import {pwdStrengthValidator} from '../common/validators/pwd-strength.validator';
-
 
 @Component({
   selector: 'app-login',

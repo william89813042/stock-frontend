@@ -18,13 +18,14 @@ import {
   take,
   throwError,
 } from 'rxjs';
-import {AuthService} from 'src/app/auth/auth.service';
+
 import {
   INVALID_TOKEN,
   LOGIN_TOKEN_EXPIRED,
   SUCCESS,
   TOKEN_MISMATCH,
 } from '../system-parameter';
+import {AuthService} from '../../auth/auth.service';
 
 //處理每一個 HTTP 請求，以確保使用者的身份驗證 token 是有效的
 @Injectable()

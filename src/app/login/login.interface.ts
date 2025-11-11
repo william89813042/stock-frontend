@@ -1,4 +1,4 @@
-import {BaseRequest} from 'src/app/common/vo/BaseRequest';
+import {BaseRequest} from '../common/vo/BaseRequest';
 
 
 /**功能選單Item */

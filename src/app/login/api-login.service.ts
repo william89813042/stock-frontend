@@ -3,13 +3,12 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 //interface
-import {RestfulResponse} from 'src/app/common/vo/RestfulResponse';
+import {RestfulResponse} from '../common/vo/RestfulResponse';
 import {LoginByAdRequest, LoginByAdResponse} from './login.interface';
 
 //system-parameter
 import {USER_LOGIN} from '../common/system-parameter';
 import { AppConfigService } from '../common/services/app-config.service';
-
 
 @Injectable({
   providedIn: 'root'

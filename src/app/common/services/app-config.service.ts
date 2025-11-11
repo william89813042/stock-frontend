@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {firstValueFrom} from 'rxjs';
 
 export interface AppConfig {
   production: boolean;
@@ -13,7 +13,8 @@ export interface AppConfig {
 export class AppConfigService {
   private config: AppConfig | null = null;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+  }
 
   async loadConfig(): Promise<void> {
     try {
