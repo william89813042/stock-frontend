@@ -1,0 +1,34 @@
+<h2 mat-dialog-title class="dialog-header">
+  {{ data.title | translate }}
+</h2>
+<!-- 分隔線 -->
+<mat-divider></mat-divider>
+<mat-dialog-content [innerHTML]="data.msg"></mat-dialog-content>
+<mat-dialog-actions align="end">
+  @if (showConfirmButton) {
+    <a
+      mat-raised-button
+      color="primary"
+      appDebounceClick
+      (debounceClick)="onConfirm()"
+    >{{ "common.confirm" | translate }}</a
+    >
+  }
+  @if (showConfirmButton) {
+    <a
+      mat-raised-button
+      mat-raised-button
+      (click)="onCancel()"
+    >{{ "common.cancel" | translate }}</a
+    >
+  }
+  @if (!showConfirmButton) {
+    <a
+      mat-raised-button
+      mat-raised-button
+      (click)="onCancel()"
+    >
+      {{ "common.close" | translate }}</a
+    >
+  }
+</mat-dialog-actions>

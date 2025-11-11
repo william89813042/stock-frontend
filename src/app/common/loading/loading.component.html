@@ -1,0 +1,5 @@
+@if (loadingService.loading$ | async) {
+  <div [@fadeInOut] id="overlay">
+    <mat-spinner class="overlay-loading" [diameter]="50"></mat-spinner>
+  </div>
+}

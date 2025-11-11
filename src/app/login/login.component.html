@@ -1,0 +1,84 @@
+<div class="login_page">
+  <mat-divider></mat-divider>
+  <div class="login_box">
+    <!-- logo -->
+    <h1><img src="../assets/img/logo.png" alt="Logo"/></h1>
+    <h2>{{ "000.title" | translate }}</h2>
+    <mat-card class="login-card">
+      <!--==========登入資訊==========  -->
+      <mat-card-content>
+        <form [formGroup]="validateForm" autocomplete="off" method="post">
+          <h2 class="login_title">LOGIN</h2>
+          <div class="input-group">
+            <label for="userId"
+            ><span class="required-input">* </span
+            >{{ "000.userId" | translate }}：</label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="userId"
+                maxlength="50"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '50' }"
+              />
+              @if (validateForm.get('userId')?.hasError('required')) {
+                <mat-error>
+                  {{ "common.warn.field.required" | translate }}
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <label for="userPd"
+            ><span class="required-input">* </span
+            >{{ "000.userPd" | translate }}：</label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                type="password"
+                autocomplete="off"
+                formControlName="userPd"
+                maxlength="50"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '50' }"
+              />
+              @if (validateForm.get('userPd')?.hasError('required')) {
+                <mat-error>
+                  {{ "common.warn.field.required" | translate }}
+                </mat-error>
+              }
+              @if (validateForm.get('userPd')?.hasError('invalidCharacters')) {
+                <mat-error>
+                  {{ "common.warn.pwd.invalidCharacters" | translate }}
+                </mat-error>
+              }
+              @if (validateForm.get('userPd')?.hasError('passwordTooShort')) {
+                <mat-error>
+                  {{ "common.warn.pwd.tooShort" | translate }}
+                </mat-error>
+              }
+              @if (validateForm.get('userPd')?.hasError('passwordTooWeak')) {
+                <mat-error>
+                  {{ "common.warn.pwd.tooWeak" | translate }}
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions class="login-btn">
+        <!-- 登入按鈕 -->
+        <button
+          mat-raised-button
+          color="primary"
+          appDebounceClick
+          class="top-btn"
+          (debounceClick)="submitForm()"
+        >
+          {{ "login.title" | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
