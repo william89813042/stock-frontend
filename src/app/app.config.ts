@@ -4,7 +4,7 @@ import {provideRouter} from '@angular/router';
 import {routes} from './app.routes';
 
 // 控制語言轉換（翻譯模組）
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 // 控制UI區域設定
@@ -36,6 +36,11 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       const appConfigService = inject(AppConfigService);
       return appConfigService.loadConfig();
+    }),
+    provideAppInitializer(() => {
+      const translate = inject(TranslateService);
+      translate.setDefaultLang('zh-TW');  // 設定預設語言
+      translate.use('zh-TW');             // 立即使用繁體中文
     }),
     provideHttpClient(withInterceptorsFromDi()), // 提供 HTTP Client 並加上攔截器
     // 配置 HTTP Interceptor
