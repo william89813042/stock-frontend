@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
     // TODO: 移除帳號密碼
     this.validateForm = this.formBuilder.group({
       userId: ['ADMIN', [Validators.required, Validators.maxLength(50)]],
-      userPd: ['Systex123', [Validators.required, Validators.maxLength(50), pwdStrengthValidator()]]
+      userPd: ['Admin123', [Validators.required, Validators.maxLength(50), pwdStrengthValidator()]]
     });
 
   }
