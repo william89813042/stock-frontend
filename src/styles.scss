@@ -1,0 +1,794 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+//@import "node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+
+@include mat.core();
+
+
+// ==========自定義顏色調色板==========
+$dark-primary-text: rgba(black, 0.87);
+$light-primary-text: white;
+
+
+$mat-primary: (
+50 : #e5e6f6,
+100: #c5c7eb,
+200: #a2a6df,
+300: #7d84d3,
+400: #616ac9,
+500: #4b53b1, // 自定義 primary 顏色
+600: #434aa0,
+700: #3a408d,
+800: #303679,
+900: #23275b,
+   A100: #b8bcff,
+   A200: #868eff,
+   A400: #545eff,
+   A700: #3b47ff,
+   contrast: (
+50 : $dark-primary-text,
+100: $dark-primary-text,
+200: $dark-primary-text,
+300: $light-primary-text,
+400: $light-primary-text,
+500: $light-primary-text,
+600: $light-primary-text,
+700: $light-primary-text,
+800: $light-primary-text,
+900: $light-primary-text,
+      A100: $dark-primary-text,
+             A200: $light-primary-text,
+                    A400: $light-primary-text,
+                           A700: $light-primary-text,
+)
+);
+
+
+$mat-accent: (
+50:  #f7fafa,
+100: #e9f1f0,
+200: #d8e4e2,
+300: #c5d5d3,
+400: #b3c7c5,
+500: #9fb7b4,
+600: #8ea7a4,
+700: #7b9390,
+800: #677d7a,
+900: #526866,
+   A100: #ddeeee,
+   A200: #bcd7d6,
+   A400: #95bbb9,
+   A700: #749e9d,
+   contrast: (
+50:  $dark-primary-text,
+100: $dark-primary-text,
+200: $dark-primary-text,
+300: $dark-primary-text,
+400: $dark-primary-text,
+500: $light-primary-text,
+600: $light-primary-text,
+700: $light-primary-text,
+800: $light-primary-text,
+900: $light-primary-text,
+      A100: $dark-primary-text,
+             A200: $dark-primary-text,
+                    A400: $light-primary-text,
+                           A700: $light-primary-text
+)
+);
+
+
+$primary: mat.m2-define-palette($mat-primary, 500);
+$accent: mat.m2-define-palette($mat-accent, A200, A100, A400);
+
+
+// ================創建主題=================
+$my-theme: mat.m2-define-light-theme((
+color: (
+primary: $primary,
+          accent: $accent,
+),
+typography: mat.m2-define-typography-config(),
+density: 0,
+));
+@include mat.all-component-themes($my-theme);
+// ================創建主題=================
+// ============html/body/toolbar============
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.container {
+  height: 92vh;
+}
+
+// ============html/body/toolbar============
+// ==================Top框==================
+
+.top-card {
+  margin: 0px auto 10px auto !important;
+}
+
+.top-card .card-header {
+  background-color: map.get($mat-primary, 500) !important; /*salina修改*/
+  color: #fff !important; /*salina修改*/
+}
+
+.top-container {
+  padding: 0 !important; /*salina修改*/
+}
+
+.top-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-around !important;
+}
+
+.top-item {
+  display: flex !important;
+  align-items: baseline !important;
+  width: 40% !important;
+}
+
+//memo 欄位
+  .top-item-memo {
+    display: flex;
+    align-items: baseline;
+    width: 90%;
+    margin-bottom: 5px;
+  }
+
+label {
+  width: 110px !important;
+  padding-right: 10px !important; /*salina修改*/
+  text-align: left;
+  flex-shrink: 0; /* 防止標籤收縮 */
+  white-space: nowrap;
+}
+
+mat-form-field {
+  flex-grow: 1;
+  min-width: 180px;
+}
+
+// error message
+   mat-error {
+     font-size: 1.2em;
+     white-space: nowrap
+   }
+
+.mat-mdc-form-field-error-wrapper {
+  padding-left: 0 !important; // 移除左側填充
+text-align: left !important; // 確保文字左對齊
+}
+
+.mat-mdc-form-field-error {
+  text-align: left !important; // 確保錯誤文字左對齊
+margin-left: 0 !important; // 移除左側邊距
+}
+
+.top-btn {
+  margin-left: 12px;
+}
+
+.required-input {
+  color: red;
+  font-size: 0.7em;
+  vertical-align: super;
+}
+
+//日期區間選擇欄位
+  .date-dash {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+// ==================Top框==================
+// ================Bottom框=================
+
+.content-card {
+  margin: 0px auto 50px auto;
+}
+
+.content-container {
+  padding: 0 !important; /*salina修改*/
+}
+
+.container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.func-btn {
+  margin-right: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+// ================Bottom框=================
+// ==================TABLE==================
+
+tr[mat-header-row] {
+  background-color: #4b53b1 !important; /*salina修改*/
+  color: #fff !important; /*salina修改*/
+  font-size: 16px !important; /*salina修改*/
+}
+
+.mat-mdc-header-cell {
+  text-align: justify !important;
+  justify-content: justify !important;
+}
+
+.mat-mdc-cell {
+  text-align: justify !important;
+  align-items: justify;
+}
+
+// ==================TABLE==================
+// =================提示框==================
+.dialog-header {
+  background-color: #eef3fb !important;
+}
+
+.mat-mdc-dialog-title::before {
+  display: inline-block;
+  width: 0px;
+  height: unset !important;
+  content: "";
+  vertical-align: 0px;
+}
+
+.mat-mdc-dialog-title {
+  margin: 0px !important; /*salina修改*/
+  padding: 15px !important; /*salina修改*/
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-title {
+  color: #1e2571 !important; /*salina修改*/
+  line-height: normal !important; /*salina修改*/
+}
+
+.mat-mdc-dialog-actions {
+  padding: 15px !important; /*salina修改*/
+}
+
+// =================提示框==================
+// ===============chip選擇框================
+
+.choose-card .card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #009999;
+  color: #fff;
+}
+
+.choose-container {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  margin: 20px auto;
+  width: 80%;
+}
+
+.choose-card {
+  width: 45%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 10%;
+}
+
+.choose-btn {
+  margin: 5px 0;
+}
+
+.mat-mdc-chip-set {
+  max-width: 90%;
+  margin: auto;
+}
+
+// ===============chip選擇框================
+// ==============Login/404/home=============
+
+/*salina新增*/
+.login_page {
+  background: #4b53b1 url(./assets/img//bg_login.jpg) no-repeat center bottom !important;
+  background-size: cover !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  position: fixed !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+}
+
+.login_box {
+  width: 100% !important;
+  text-align: center !important;
+  padding: 50px 0 !important;
+}
+
+.login_box > h2 {
+  font-size: 40px !important;
+  color: #1e2571 !important;
+  margin: 0 0 20px 0 !important;
+  letter-spacing: 1px !important;
+  font-weight: 600 !important;
+}
+
+.login_title {
+  text-align: center !important;
+  color: #1e2571 !important;
+  font-size: 30px !important;
+  font-weight: 500 !important;
+  margin-top: 0 !important;
+  letter-spacing: 1px !important;
+}
+
+.page_404 {
+  background: #64b1b1 url(./assets/img//404.jpg) no-repeat center center !important;
+  background-size: cover !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  position: fixed !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+}
+
+.home_bg {
+  background: #fff url(./assets/img//home_bg.jpg) no-repeat center top !important;
+  background-size: cover !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  position: fixed !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: baseline !important;
+  justify-content: center !important;
+  margin: -16px !important;
+}
+
+.home_bg h1 {
+  font-size: 40px !important;
+  color: #3c3a5b !important;
+  margin: 300px 0 !important;
+  font-weight: 500 !important;
+  letter-spacing: 5px !important;
+  width: 80% !important;
+  text-transform: uppercase !important;
+}
+
+// ==============Login/404/home=============
+// =================Layout==================
+
+// 修正 Material 按鈕樣式
+   .mat-mdc-icon-button.mat-mdc-button-base {
+     --mdc-icon-button-state-layer-size: unset !important;
+     width: unset !important;
+     height: unset !important;
+     padding: unset !important;
+   }
+
+.mat-mdc-raised-button.mat-primary {
+  --mdc-protected-button-container-color: #4b53b1 !important; /*0519修改*/
+  --mdc-protected-button-label-text-color: white !important;
+}
+
+// 表單欄位樣式調整
+   .mdc-text-field--outlined {
+     padding: 0 10px !important; /*salina修改*/
+   }
+
+.mat-mdc-form-field-infix {
+  min-height: auto !important; /*salina修改*/
+  padding: 10px 0 !important; /*salina修改*/
+}
+
+.mdc-text-field--outlined
+.mat-mdc-form-field-infix,
+.mdc-text-field--no-label
+.mat-mdc-form-field-infix {
+  padding: 10px 0 !important; /*salina修改*/
+}
+
+.mat-mdc-form-field {
+  width: 100% !important; /*salina修改*/
+}
+
+
+// 工具欄與導航樣式
+   mat-toolbar {
+     min-height: 64px !important;
+     background-color: white !important;
+   }
+
+mat-toolbar[_ngcontent-ng-c2371743882] {
+  min-height: 64px !important; /*salina修改*/
+}
+
+.logout-btn {
+  width: 36px !important;
+  height: 32px !important;
+}
+
+.mat-toolbar {
+  position: relative !important; /*salina修改*/
+  z-index: 2 !important; /*salina修改*/
+  box-shadow: 0px 2px 7px 0 rgb(48 75 75 / 35%) !important; /*salina修改*/
+}
+
+/*salina新增*/
+.mat-toolbar span {
+  font-size: 22px !important;
+  color: #1e2571 !important;
+  font-weight: 600 !important;
+}
+
+.mat-toolbar h5 {
+  font-size: 16px !important;
+  background: #eef3fb !important;
+  color: #1e2571 !important;
+  padding: 1px 15px !important;
+  border-radius: 30px !important;
+}
+
+@media (forced-colors: active) {
+  .mat-toolbar {
+    outline: solid 1px !important;
+  }
+}
+
+.logo {
+  max-height: 45px;
+  margin-right: 15px;
+  padding: 0 15px 0 20px;
+  border-right: 1px #090f52 solid;
+}
+
+.logo[_ngcontent-ng-c2371743882] {
+  max-height: 45px !important; /*salina修改*/
+  margin-right: 15px !important; /*salina修改*/
+  padding: 0 15px 0 20px !important; /*salina修改*/
+  border-right: 1px #090f52 solid !important; /*salina修改*/
+}
+
+
+// sidenav
+   mat-sidenav {
+     width: 220px;
+   }
+
+mat-sidenav-content {
+  padding: 16px;
+  margin: 0;
+}
+
+mat-sidenav-content[_ngcontent-ng-c2371743882] {
+  margin: 0 !important; /*salina修改*/
+}
+
+mat-list-item {
+  display: flex;
+  align-items: center;
+}
+
+
+// Sidenav 樣式
+
+   .mat-drawer-side {
+     border-right-width: 2px !important; /*salina修改*/
+   }
+
+// 展開面板樣式
+
+   .mat-accordion .mat-expansion-panel:first-of-type {
+     border-top-right-radius: 0 !important; /*salina修改*/
+     border-top-left-radius: 0 !important; /*salina修改*/
+   }
+
+.mat-accordion .mat-expansion-panel:last-of-type {
+  border-top-right-radius: 0 !important; /*salina修改*/
+  border-top-left-radius: 0 !important; /*salina修改*/
+}
+
+.mat-expansion-panel-body {
+  padding: 0 24px 0 !important; /*salina修改*/
+  background: #fff !important; /*salina修改*/
+}
+
+.mat-expansion-panel-spacing {
+  margin: 0px 0 !important; /*0519修改*/
+}
+
+.mat-expansion-panel-header {
+  background-color: #1e2571 !important; /*salina修改*/
+  border-bottom: 1px #091055 solid !important; /*salina修改*/
+  color: #fff !important; /*salina修改*/
+  padding: 12px 24px !important; /*salina修改*/
+  height: auto !important; /*salina修改*/
+  font-size: 18px !important; /*salina修改*/
+}
+
+.mat-expansion-panel:not(.mat-expanded)
+.mat-expansion-panel-header:not([aria-disabled=true]):hover {
+  background: #4b53b1 !important; /*salina修改*/
+}
+
+.mat-expansion-panel-header.mat-expanded:focus,
+.mat-expansion-panel-header.mat-expanded:hover {
+  background: #4b53b1 !important; /*salina修改*/
+}
+
+.mat-expansion-indicator::after {
+  color: #fff !important; /*salina修改*/
+}
+
+
+// 列表樣式
+   .mdc-list {
+     padding: 0 !important; /*salina修改*/
+   }
+
+.mdc-list-item {
+  align-items: stretch;
+  padding-left: 10px !important; /*salina修改*/
+  padding-right: 0 !important; /*salina修改*/
+}
+
+.mdc-list-item__primary-text {
+  color: #1e2571 !important; /*salina修改*/
+  font-weight: 500 !important; /*salina修改*/
+}
+
+.mdc-list-item:hover
+.mdc-list-item__primary-text {
+  color: #353e97 !important; /*salina修改*/
+}
+
+.mdc-list-item:focus
+.mdc-list-item__primary-text {
+  color: #4b53b1 !important; /*salina修改*/
+}
+
+.mdc-list-item:hover::before {
+  background-color: transparent !important; /*salina修改*/
+}
+
+.mdc-list-item:focus::before {
+  background-color: transparent !important; /*salina修改*/
+}
+
+
+// card
+   mat-card {
+     margin: 0 auto;
+     width: 100%;
+     max-width: 100%;
+   }
+
+mat-card-content {
+  width: 95%;
+  display: flex;
+  margin: 15px auto 0 auto !important;
+  padding-bottom: 0 !important;
+  flex-direction: column;
+}
+
+mat-card[_ngcontent-ng-c2815756911] {
+  margin: 0 auto !important; /*salina修改*/
+}
+
+mat-card-content[_ngcontent-ng-c2815756911] {
+  margin: 15px auto 0 auto !important; /*salina修改*/
+  padding-bottom: 0 !important; /*salina修改*/
+}
+
+.input-group {
+  margin: 0 !important;
+  align-items: baseline !important;
+}
+
+.input-group label {
+  margin: 0 !important;
+}
+
+.input-group[_ngcontent-ng-c2815756911] {
+  margin: 0 !important; /*salina修改*/
+  align-items: baseline !important; /*salina修改*/
+}
+
+.input-group[_ngcontent-ng-c2815756911] label[_ngcontent-ng-c2815756911] {
+  margin: 0 !important; /*salina修改*/
+}
+
+
+.mat-mdc-option .mat-pseudo-checkbox {
+  margin-right: 12px;
+}
+
+.mat-mdc-card-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 15px;
+}
+
+.mat-mdc-card-actions-align-end {
+  justify-content: flex-end
+}
+
+.mat-mdc-card-header {
+  display: flex;
+  padding: 16px !important;
+}
+
+.mat-mdc-card-content {
+  display: block;
+  padding: 16px !important;
+}
+
+.mat-mdc-card-header h2 {
+  margin: 0 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.mat-mdc-card-content h3 {
+  margin-top: 0 !important;
+  font-weight: 600 !important;
+  color: #1e2571 !important;
+  letter-spacing: 1px !important;
+}
+
+
+// 分頁器樣式
+
+   .mat-mdc-paginator .mat-mdc-select-value {
+     font-size: 14px !important; /*salina修改*/
+   }
+
+.mat-mdc-paginator-container {
+  padding: 0 0 15px 0 !important; /*salina修改*/
+  min-height: auto !important; /*salina修改*/
+}
+
+/*salina新增*/
+.mat-mdc-paginator-container .mat-mdc-form-field-infix {
+  padding: 5px 0 !important;
+}
+
+/*salina新增*/
+.mat-mdc-paginator-page-size {
+  display: flex !important;
+  width: 200px !important;
+  align-items: baseline !important;
+  margin-right: 8px !important;
+}
+
+.mat-mdc-paginator-page-size-label {
+  margin: 0 4px;
+  width: 150px !important;
+  font-size: 15px; /*salina修改*/
+}
+
+.mat-mdc-paginator-range-label {
+  margin: 0 15px !important; /*salina修改*/
+  font-size: 15px !important; /*salina修改*/
+}
+
+.mat-mdc-row, .mdc-data-table__content {
+  font-size: 16px !important; /*salina修改*/
+}
+
+
+// radio group button 樣式
+
+   .mat-mdc-radio-button .mat-internal-form-field {
+     margin: 0 !important;
+     font-size: 16px !important;
+   }
+
+// radio label
+   .mat-internal-form-field > label {
+     width: 50px !important;
+     padding-right: 5px !important;
+     padding-left: 0 !important;
+   }
+
+// radio button
+   .mat-internal-form-field .mdc-radio {
+     padding-right: 5px !important;
+     padding-left: 0 !important;
+   }
+
+mat-radio-group {
+  margin-bottom: 15px;
+}
+
+
+// slide-toggle button
+   .mat-mdc-slide-toggle {
+     transform: scale(1.3) !important; /* 控制整體大小，可調整倍率 */
+     transform-origin: left center; /* 調整對齊 */
+   }
+
+
+
+
+
+// =================TEST==================
+
+
+/* 針對 Material Table 的資料列，增加 hover 效果 */
+.mat-mdc-row:hover {
+  background-color: map.get($mat-accent, 50);
+  border-left: 4px solid map.get($mat-accent, A700); // 主色 accent
+}
+.mdc-list-item:hover {
+  background-color: map.get($mat-primary, 50) !important; // 柔和淺底 #f1f4f8
+border-radius: 4px;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 24px 0 !important; /*salina修改*/
+  background: #fff !important; /*salina修改*/
+  width: 230px;
+}
+
+.mdc-list-item__primary-text {
+  font-size: 16px !important;
+  color: #1e2571 !important; /*salina修改*/
+  font-weight: 500 !important; /*salina修改*/
+// white-space: normal !important; /* 允許換行 */
+  word-break: break-word !important; /* 單字太長也能換行 */
+}
+
+
+.active-link {
+  font-weight: 600;
+  background-color: map.get($mat-primary, 50) !important;
+  border-left: 4px solid map.get($mat-primary, A700);
+}
+
+.table-nodata {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 1.2em;
+  font-style: italic;
+  color: #888;
+}
+
+// ==============自訂下拉按鈕=============
+
+.custom-autocomplete-button{
+  padding-right: 3px;
+}
+
+.mat-mdc-form-field-icon-suffix {
+  width: 18px !important;
+}

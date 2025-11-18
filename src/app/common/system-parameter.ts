@@ -31,5 +31,23 @@ export const USER_TOKEN_REFRESH = '/user-login/token-refresh';
 export const USER_PD_CHANGE = '/user-login/change-pd';
 
 
+//=========== 【0101 股票倉位維護】===========
+
+
+/**查詢倉位by查詢條件url*/
+export const STOCK_POSITION_LIST_QUERY = '/stockPosition/qry';
+
+/**檢視倉位by股票代號url*/
+export const STOCK_POSITION_LIST_VIEW = '/stockPosition/view';
+
+/**新增股票倉位url*/
+export const STOCK_POSITION_ADD = '/stockPosition/add';
+
+/**修改股票倉位url*/
+export const STOCK_POSITION_UPD = '/stockPosition/upd';
+
+/**刪除股票倉位url*/
+export const STOCK_POSITION_DEL = '/stockPosition/del';
+
 
 
