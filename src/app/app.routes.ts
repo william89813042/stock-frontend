@@ -26,15 +26,15 @@ export const routes: Routes = [
           ),
         canActivate: [authGuard],
       },
-      // {
-      //   path: 'Qms-Body0101',
-      //   loadChildren: () =>
-      //     import('./pages/Qms-Body0100/Qms-Body0101/entry0101.routes').then(
-      //       (m) => m.routes,
-      //     ),
-      //   canActivate: [authGuard],
-      //   data: { code: '0101' },
-      // },
+      {
+        path: 'stock-Body0101',
+        loadChildren: () =>
+          import('./pages/stock-Body0101/entry0101.routes').then(
+            (m) => m.routes,
+          ),
+        canActivate: [authGuard],
+        data: { code: '0101' },
+      },
     ],
   },
 

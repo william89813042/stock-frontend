@@ -1,0 +1,238 @@
+<mat-card class="top-card">
+  <!-- 標題 -->
+  <mat-card-header class="card-header">
+    <h2>{{ "0101.title.qry" | translate }}</h2>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+
+  <!--==========查詢條件==========  -->
+  <mat-card-content>
+    <form [formGroup]="validateForm">
+      <div class="top-container">
+        <h3>{{ "common.qry.condition" | translate }}</h3>
+
+        <!-- =====第一列===== -->
+        <div class="top-row">
+          <!--站點代碼 -->
+          <div class="top-item">
+            <label for="station">{{ "0101.station" | translate }}：</label>
+            <mat-form-field appearance="outline">
+              <!-- 限制input長度為3 -->
+              <input
+                matInput
+                formControlName="station"
+                maxlength="3"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '3' }"
+              />
+              <!-- 顯示目前輸入字數 -->
+              <mat-hint align="end">
+                {{ validateForm.get("station")?.value?.length || 0 }}/3
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- 站點名稱 -->
+          <div class="top-item">
+            <label for="stationName">{{ "0101.stationName" | translate }}：</label>
+            <mat-form-field appearance="outline">
+              <!-- 限制input長度為50 -->
+              <input
+                matInput
+                formControlName="stationName"
+                maxlength="50"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '50' }"
+              />
+              <!-- 顯示目前輸入字數 -->
+              <mat-hint align="end">
+                {{ validateForm.get("stationName")?.value?.length || 0 }}/50
+              </mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- =====第二列===== -->
+        <div class="top-row">
+          <!-- 站點分類 -->
+          <div class="top-item">
+            <label for="stationKind">{{ "0101.stationKind" | translate }}：</label>
+            <mat-form-field appearance="outline">
+              <mat-select
+                formControlName="stationKind"
+                [placeholder]="'common.checkAll' | translate "
+              >
+                <mat-option [value]="null"
+                >{{ "common.checkAll" | translate }}
+                </mat-option>
+                <mat-option [value]="'NEC'"
+                >{{ "0101.nec" | translate }}
+                </mat-option>
+                <mat-option [value]="'BR'"
+                >{{ "0101.br" | translate }}
+                </mat-option>
+                <mat-option [value]="'EJ'"
+                >{{ "0101.ej" | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- 啟用狀態 -->
+          <div class="top-item">
+            <label for="isActive">{{ "0101.isActive" | translate }}：</label>
+            <mat-form-field appearance="outline">
+              <mat-select
+                formControlName="isActive"
+                [placeholder]="'common.checkAll' | translate "
+              >
+                <mat-option [value]="null"
+                >{{ "common.checkAll" | translate }}
+                </mat-option>
+                <mat-option [value]="false"
+                >{{ "common.disable" | translate }}
+                </mat-option>
+                <mat-option [value]="true"
+                >{{ "common.active" | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <!-- 查詢按鈕 -->
+    <button
+      mat-raised-button
+      color="primary"
+      appDebounceClick
+      (debounceClick)="submitForm()"
+      class="top-btn"
+    >
+      {{ "common.qry" | translate }}
+    </button>
+    <!-- 重設按鈕 -->
+    <button mat-raised-button (click)="resetForm()" class="top-btn">
+      {{ "common.reset" | translate }}
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<!--==========查詢結果==========  -->
+@if (showTable) {
+  <mat-card class="content-card">
+    <mat-card-content>
+      <div class="content-container">
+        <!-- 新增按鈕 -->
+        <div class="container-header">
+          <h3>{{ "common.qry.result" | translate }}</h3>
+          <button mat-raised-button color="primary" (click)="toAdd()">
+            {{ "common.add" | translate }}
+          </button>
+        </div>
+
+        <!-- 分頁控制(後端分頁) -->
+        <mat-paginator
+          showFirstLastButtons
+          (page)="onPageChange($event)"
+          [pageSize]="pageSize"
+          [pageIndex]="pageIndex"
+          [length]="totalItems"
+          [pageSizeOptions]="[5, 10, 15]"
+        >
+        </mat-paginator>
+
+          <table mat-table [dataSource]="dataSource">
+            <!-- 站點代碼 -->
+            <ng-container matColumnDef="station">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "0101.station" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let data">
+                {{ data.station }}
+              </td>
+            </ng-container>
+
+            <!-- 站點名稱 -->
+            <ng-container matColumnDef="stationName">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "0101.stationName" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let data">{{ data.stationName }}</td>
+            </ng-container>
+
+            <!-- 站點分類 -->
+            <ng-container matColumnDef="stationKind">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "0101.stationKind" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let data">{{ getStationKindText(data.stationKind) }}</td>
+            </ng-container>
+
+            <!-- 啟用狀態 -->
+            <ng-container matColumnDef="isActive">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "0101.isActive" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let data">
+                {{ data.isActive? ('common.active'| translate) : ('common.disable'| translate)  }}
+              </td>
+            </ng-container>
+
+            <!-- 修改人員 -->
+            <ng-container matColumnDef="modifyId">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "0101.modifyId" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let data">{{ data.modifyId }}</td>
+            </ng-container>
+
+            <!-- 功能 -->
+            <ng-container matColumnDef="func">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "0101.func" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let data">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="func-btn"
+                  (click)="toView(data)"
+                >
+                  {{ "common.view" | translate }}
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="func-btn"
+                  (click)="toUpd(data)"
+                >
+                  {{ "common.edit" | translate }}
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="func-btn"
+                  (click)="submitDel(data.id)"
+                >
+                  {{ "common.delete" | translate }}
+                </button>
+              </td>
+            </ng-container>
+
+            <!-- ===定義表頭=== -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <!-- ===渲染欄位=== -->
+            <tr mat-row *matRowDef="let data; columns: displayedColumns"></tr>
+            <!-- 當沒有資料時顯示的列 -->
+            <tr *matNoDataRow >
+              <td  [attr.colspan]="displayedColumns.length" class="table-nodata">
+                {{ "common.nodata.dis" | translate }}
+              </td>
+            </tr>
+          </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+}

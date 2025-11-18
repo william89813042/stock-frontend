@@ -1,0 +1,142 @@
+<mat-card class="top-card">
+  <!-- 標題 -->
+  <mat-card-header class="card-header">
+    <h2>{{ "0101.title.add" | translate }}</h2>
+  </mat-card-header>
+  <!-- 分隔線 -->
+  <mat-divider></mat-divider>
+
+  <!--==========站點資訊==========  -->
+  <mat-card-content>
+    <form [formGroup]="validateForm">
+      <div class="top-container">
+        <h3>{{ "0101.stationInfo" | translate }}</h3>
+
+        <!-- =====第一列===== -->
+        <div class="top-row">
+          <!-- 站點代碼 -->
+          <div class="top-item">
+            <label for="station">
+              <span class="required-input">* </span>
+              {{ "0101.station" | translate }}：
+            </label>
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="station"
+                maxlength="3"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '3' }"
+              />
+              <!-- 顯示目前輸入字數 -->
+              <mat-hint align="end">
+                {{ validateForm.get("station")?.value?.length || 0 }}/3
+              </mat-hint>
+              @if (validateForm.get('station')?.hasError('required')) {
+                <mat-error>
+                  {{ "common.warn.field.required" | translate }}
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <!-- 站點名稱 -->
+          <div class="top-item">
+            <label for="stationName">
+              <span class="required-input">* </span>
+              {{ "0101.stationName" | translate }}：
+            </label>
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="stationName"
+                maxlength="50"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '50' }"
+              />
+              <!-- 顯示目前輸入字數 -->
+              <mat-hint align="end">
+                {{ validateForm.get("stationName")?.value?.length || 0 }}/50
+              </mat-hint>
+              @if (validateForm.get('stationName')?.hasError('required')) {
+                <mat-error>
+                  {{ "common.warn.field.required" | translate }}
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- =====第二列===== -->
+        <div class="top-row">
+          <!--站點種類 -->
+          <div class="top-item">
+            <label for="stationKind">
+              <span class="required-input">* </span>
+              {{ "0101.stationKind" | translate }}：
+            </label>
+            <mat-form-field appearance="outline">
+              <mat-select formControlName="stationKind">
+                <mat-option [value]="'NEC'"
+                >{{ "0101.nec" | translate }}
+                </mat-option>
+                <mat-option [value]="'BR'"
+                >{{ "0101.br" | translate }}
+                </mat-option>
+                <mat-option [value]="'EJ'"
+                >{{ "0101.ej" | translate }}
+                </mat-option>
+              </mat-select>
+              @if (validateForm.get('stationKind')?.hasError('required')) {
+                <mat-error>
+                  {{ "common.warn.field.required" | translate }}
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <!-- 啟用狀態 -->
+          <div class="top-item">
+            <label for="isActive">
+              <span class="required-input">* </span>
+              {{ "0101.isActive" | translate }}：
+            </label>
+            <mat-radio-group
+              formControlName="isActive"
+              color="primary"
+              class="radio-group"
+            >
+              <mat-radio-button [value]="true">
+                {{ "common.active" | translate }}
+              </mat-radio-button>
+              <mat-radio-button [value]="false">
+                {{ "common.disable" | translate }}
+              </mat-radio-button>
+            </mat-radio-group>
+            @if (validateForm.get('isActive')?.hasError('required')) {
+              <mat-error>
+                {{ "common.warn.field.required" | translate }}
+              </mat-error>
+            }
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <!-- 儲存按鈕 -->
+    <button
+      mat-raised-button
+      color="primary"
+      appDebounceClick
+      class="top-btn"
+      (debounceClick)="submitForm()"
+    >
+      {{ "common.save" | translate }}
+    </button>
+    <!-- 取消按鈕 -->
+    <button mat-raised-button (click)="toQry()" class="top-btn">
+      {{ "common.cancel" | translate }}
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -28,15 +28,9 @@ import {pwdStrengthValidator} from '../common/validators/pwd-strength.validator'
 @Component({
   selector: 'app-login',
   imports: [
-    MatToolbarModule,
-    DebounceClickDirective,
-    MatDividerModule,
-    MatCardModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    TranslateModule
+    MatToolbarModule, DebounceClickDirective, MatDividerModule,
+    MatCardModule, MatButtonModule, MatFormFieldModule,
+    MatInputModule, ReactiveFormsModule, TranslateModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -124,6 +118,3 @@ export class LoginComponent implements OnInit {
 
   }
 }
-
-
-

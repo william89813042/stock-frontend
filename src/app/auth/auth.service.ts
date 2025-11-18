@@ -156,12 +156,60 @@ export class AuthService {
 
 
   //==========功能選單設置==========
+  /**
+   * 設置使用者功能選單
+   * @param origin 使用者功能選單資訊陣列
+   */
+  setMenuPermissions(origin: any): void {  // 暫時改成 any 來接收任何型別
+    console.log('===== setMenuPermissions 詳細資訊 =====');
+    console.log('接收到的資料型別:', typeof origin);
+    console.log('是否為陣列:', Array.isArray(origin));
+    console.log('資料內容:', origin);
+    console.log('資料的 keys:', origin ? Object.keys(origin) : 'null');
 
+    // 嘗試提取可能的陣列位置
+    if (origin && typeof origin === 'object') {
+      console.log('可能的欄位:');
+      console.log('- origin.data:', origin.data);
+      console.log('- origin.list:', origin.list);
+      console.log('- origin.userFuncMenuInfoList:', origin.userFuncMenuInfoList);
+      console.log('- origin.menuList:', origin.menuList);
+    }
+    console.log('======================================');
 
-  /**設置使用者功能選單 */
-  setMenuPermissions(origin: UserFuncMenuInfo[]): void {
-    this.setPermissions(origin);
-    this.setUserFuncMenu(origin);
+    // 嘗試從物件中提取陣列
+    let menuArray: UserFuncMenuInfo[] = [];
+
+    if (Array.isArray(origin)) {
+      // 如果本身就是陣列，直接使用
+      menuArray = origin;
+    } else if (origin && typeof origin === 'object') {
+      // 如果是物件，嘗試從常見的欄位中提取陣列
+      menuArray = origin.userFuncMenuInfoList
+        || origin.menuList
+        || origin.list
+        || origin.data
+        || [];
+    }
+
+    console.log('[AuthService] 提取後的選單陣列:', menuArray);
+    console.log('[AuthService] 選單陣列長度:', menuArray.length);
+
+    // 檢查提取後的陣列
+    if (!Array.isArray(menuArray) || menuArray.length === 0) {
+      console.error('[AuthService] setMenuPermissions 接收到無效的資料', {
+        原始資料型別: typeof origin,
+        原始資料: origin,
+        提取後的陣列: menuArray
+      });
+      this.setPermissions([]);
+      this.setUserFuncMenu([]);
+      return;
+    }
+
+    // 設定權限和選單
+    this.setPermissions(menuArray);
+    this.setUserFuncMenu(menuArray);
   }
 
   /**
@@ -181,30 +229,46 @@ export class AuthService {
 
   /**
    * 設置功能選單
-   * @param origin
+   * @param origin 使用者功能選單資訊陣列
    */
-  setUserFuncMenu(origin: UserFuncMenuInfo[]) {
+  setUserFuncMenu(origin: UserFuncMenuInfo[]): void {
+    // 防禦性檢查：確保 origin 是有效的陣列
+    if (!origin || !Array.isArray(origin)) {
+      console.warn('[AuthService] setUserFuncMenu 接收到無效的資料', origin);
+      this.menuSubject.next([]);
+      return;
+    }
+
     const menuList: UserFuncMenuList[] = [];
+
     origin.forEach((item) => {
-      //如果 funcLevel 等於 1，則為主菜單，初始化並添加到 menuList
+      // 確保 item 有效
+      if (!item) {
+        console.warn('[AuthService] 遇到無效的選單項目', item);
+        return;  // 跳過這個項目，繼續下一個
+      }
+
+      // 如果 level 等於 1，則為主菜單
       if (item.level === 1) {
-        const menu = {
+        const menu: UserFuncMenuList = {
           ...item,
           subFuncMenuList: [],
         };
         menuList.push(menu);
       } else {
-
-        //將子項目添加到最後一個主菜單的 subFunctionMenuList 中
+        // 將子項目添加到最後一個主菜單的 subFuncMenuList 中
         const lastMenu = menuList[menuList.length - 1];
-        if (lastMenu) lastMenu.subFuncMenuList.push(item);
-
+        if (lastMenu) {
+          lastMenu.subFuncMenuList.push(item);
+        } else {
+          console.warn('[AuthService] 找不到父選單，無法加入子選單', item);
+        }
       }
     });
 
-    //更新 menuSubject 通知訂閱者
+    // 更新 menuSubject 通知訂閱者
     this.menuSubject.next(menuList);
-
+    console.log('[AuthService] 選單設定完成，共', menuList.length, '個主選單');
   }
 
 
