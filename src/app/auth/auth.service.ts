@@ -82,7 +82,6 @@ export class AuthService {
 
   //==========使用者資訊設置==========
 
-
   /**
    * 傳送使用者資訊給予訂閱者
    * @param userName 使用者名稱
@@ -160,22 +159,8 @@ export class AuthService {
    * 設置使用者功能選單
    * @param origin 使用者功能選單資訊陣列
    */
-  setMenuPermissions(origin: any): void {  // 暫時改成 any 來接收任何型別
-    console.log('===== setMenuPermissions 詳細資訊 =====');
-    console.log('接收到的資料型別:', typeof origin);
-    console.log('是否為陣列:', Array.isArray(origin));
-    console.log('資料內容:', origin);
-    console.log('資料的 keys:', origin ? Object.keys(origin) : 'null');
-
-    // 嘗試提取可能的陣列位置
-    if (origin && typeof origin === 'object') {
-      console.log('可能的欄位:');
-      console.log('- origin.data:', origin.data);
-      console.log('- origin.list:', origin.list);
-      console.log('- origin.userFuncMenuInfoList:', origin.userFuncMenuInfoList);
-      console.log('- origin.menuList:', origin.menuList);
-    }
-    console.log('======================================');
+  //TODO: 暫時改成 any 來接收任何型別
+  setMenuPermissions(origin: any): void {
 
     // 嘗試從物件中提取陣列
     let menuArray: UserFuncMenuInfo[] = [];
@@ -192,16 +177,8 @@ export class AuthService {
         || [];
     }
 
-    console.log('[AuthService] 提取後的選單陣列:', menuArray);
-    console.log('[AuthService] 選單陣列長度:', menuArray.length);
-
     // 檢查提取後的陣列
     if (!Array.isArray(menuArray) || menuArray.length === 0) {
-      console.error('[AuthService] setMenuPermissions 接收到無效的資料', {
-        原始資料型別: typeof origin,
-        原始資料: origin,
-        提取後的陣列: menuArray
-      });
       this.setPermissions([]);
       this.setUserFuncMenu([]);
       return;
@@ -268,9 +245,7 @@ export class AuthService {
 
     // 更新 menuSubject 通知訂閱者
     this.menuSubject.next(menuList);
-    console.log('[AuthService] 選單設定完成，共', menuList.length, '個主選單');
   }
-
 
   //==========路由權限驗證==========
 

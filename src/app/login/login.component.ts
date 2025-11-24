@@ -82,7 +82,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-
   // ================CALL API=================
 
   /**使用者AD登入 */
@@ -106,7 +105,8 @@ export class LoginComponent implements OnInit {
         this.authService.setAccToken(result.data.tokenPair.accessToken);
         this.authService.setRefToken(result.data.tokenPair.refreshToken);
         //設定menu
-        this.authService.setMenuPermissions(result.data.userFunctionMenuInfoList);
+        const menuList = result.data?.userFunctionMenuInfoList || [];
+        this.authService.setMenuPermissions(menuList);
         //設定使用者資訊
         this.authService.setUser(result.data.userName);
         this.authService.setIsChange(result.data.isChange);
