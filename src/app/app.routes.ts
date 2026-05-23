@@ -33,7 +33,25 @@ export const routes: Routes = [
             (m) => m.routes,
           ),
         canActivate: [authGuard],
-        data: { code: '0101' },
+        data: { code: 'STOCK_LIST' },
+      },
+      {
+        path: 'stock/list',
+        loadChildren: () =>
+          import('./pages/stock-Body0101/entry0101.routes').then(
+            (m) => m.routes,
+          ),
+        canActivate: [authGuard],
+        data: { code: 'STOCK_LIST' },
+      },
+      {
+        path: 'stock/add',
+        loadComponent: () =>
+          import('./pages/stock-Body0101/components/add0101/add0101.component').then(
+            (m) => m.Add0101Component,
+          ),
+        canActivate: [authGuard],
+        data: { code: 'STOCK_ADD' },
       },
     ],
   },

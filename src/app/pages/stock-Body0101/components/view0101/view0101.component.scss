@@ -1,0 +1,40 @@
+.top-card,
+.content-card {
+  margin: 16px;
+}
+
+.top-container,
+.content-container {
+  padding: 16px 0;
+}
+
+.top-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.top-item {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 1180px;
+  width: 100%;
+}
+
+.table-nodata {
+  padding: 24px;
+  text-align: center;
+}
+
+.top-btn {
+  margin-left: 8px;
+}

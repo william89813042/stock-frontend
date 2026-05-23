@@ -1,0 +1,52 @@
+.top-card,
+.content-card {
+  margin: 16px;
+}
+
+.card-header,
+.container-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-container,
+.content-container {
+  padding: 16px 0;
+}
+
+.top-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.top-item {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+}
+
+.top-btn,
+.func-btn {
+  margin-left: 8px;
+}
+
+.func-cell {
+  white-space: nowrap;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 1280px;
+  width: 100%;
+}
+
+.table-nodata {
+  padding: 24px;
+  text-align: center;
+}

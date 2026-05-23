@@ -1,0 +1,39 @@
+.top-card {
+  margin: 16px;
+}
+
+.top-container {
+  padding: 16px 0;
+}
+
+.top-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.top-item {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+}
+
+.wide-item {
+  flex-basis: 100%;
+}
+
+.radio-group {
+  display: flex;
+  gap: 16px;
+  min-height: 56px;
+  align-items: center;
+}
+
+.required-input {
+  color: #d32f2f;
+}
+
+.top-btn {
+  margin-left: 8px;
+}

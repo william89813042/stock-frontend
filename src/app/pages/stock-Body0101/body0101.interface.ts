@@ -1,71 +1,100 @@
-import {PageBaseRequest} from '../../common/vo/PageBaseRequest';
-import {BaseRequest} from '../../common/vo/BaseRequest';
+import { BaseRequest } from '../../common/vo/BaseRequest';
+import { PageBaseRequest } from '../../common/vo/PageBaseRequest';
 
-//==========查詢畫面==========
+export type TransactionType = 'BUY' | 'SELL';
 
-/**查詢站點清單By查詢條件request */
-export interface QryStationRequest extends PageBaseRequest {
-  station: string;
-  stationName: string;
-  stationKind: string;
-  isActive: boolean;
+export interface QryStockRequest extends PageBaseRequest {
+  stockCode: string | null;
+  stockName: string | null;
+  startDate: string | null;
+  endDate: string | null;
 }
 
-/**查詢站點清單By查詢條件response */
-export interface QryStationResponse {
+export interface QryStockResponse {
   id: number;
-  station: string;
-  stationName: string;
-  stationKind: string;
-  isActive: boolean;
-  modifyId: string;
+  stockCode: string;
+  stockName: string;
+  purchaseDate: string | null;
+  purchaseQuantity: number | null;
+  purchasePrice: number | null;
+  purchaseTotalCost: number | null;
+  saleDate: string | null;
+  saleQuantity: number | null;
+  salePrice: number | null;
+  saleTotalAmount: number | null;
+  rate: number | null;
 }
 
-/**查詢站點清單By查詢條件response */
-export interface QryStationPageResponse {
-  content: QryStationResponse[];
+export interface QryStockPageResponse {
+  content: QryStockResponse[];
   totalElements: number;
   size: number;
   number: number;
 }
 
+export interface ViewStockRequest extends BaseRequest {
+  id?: number;
+  stockCode?: string | null;
+  purchaseDate?: string | null;
+}
 
-/**刪除站點Request */
-export interface DelStationRequest extends BaseRequest {
+export interface ViewStockResponse {
+  stockCode: string;
+  stockName: string;
+  purchaseDate: string | null;
+  purchaseQuantity: number | null;
+  purchasePrice: number | null;
+  purchaseTotalCost: number | null;
+  saleDate: string | null;
+  saleQuantity: number | null;
+  salePrice: number | null;
+  saleTotalAmount: number | null;
+  netProfit: number | null;
+  rate: number | null;
+  memo: string | null;
+}
+
+export interface AddStockVo {
+  transactionType: TransactionType;
+  stockCode: string;
+  stockName: string;
+  purchaseDate?: string | null;
+  purchaseQuantity?: number | null;
+  purchasePrice?: number | null;
+  saleDate?: string | null;
+  saleQuantity?: number | null;
+  salePrice?: number | null;
+  memo?: string | null;
+}
+
+export interface AddStockRequest extends BaseRequest {
+  addStockList: AddStockVo[];
+}
+
+export interface AddStockResponse {
+}
+
+export interface UpdStockVo {
   id: number;
+  stockCode: string;
+  stockName: string;
+  purchaseDate: string;
+  purchaseQuantity: number;
+  purchasePrice: number;
+  purchaseTotalCost: number;
 }
 
-/**刪除站點response */
-export interface DelStationResponse {
+export interface UpdStockRequest extends BaseRequest {
+  updStockList: UpdStockVo[];
 }
 
-
-//==========新增畫面==========
-
-/**新增站點Request */
-export interface AddStationRequest extends BaseRequest {
-  station: string;
-  stationName: string;
-  stationKind: string;
-  isActive: boolean;
+export interface UpdStockResponse {
 }
 
-/**新增站點response */
-export interface AddStationResponse {
-}
-
-
-//==========修改畫面==========
-
-/**修改站點Request */
-export interface UpdStationRequest extends BaseRequest {
+export interface DelStockRequest extends BaseRequest {
   id: number;
-  station: string;
-  stationName: string;
-  stationKind: string;
-  isActive: boolean;
+  stockCode: string;
 }
 
-/**修改站點response */
-export interface UpdStationResponse {
+export interface DelStockResponse {
 }

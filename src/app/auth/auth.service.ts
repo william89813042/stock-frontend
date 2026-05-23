@@ -217,6 +217,7 @@ export class AuthService {
     }
 
     const menuList: UserFuncMenuList[] = [];
+    const parentMap = new Map<string, UserFuncMenuList>();
 
     origin.forEach((item) => {
       // 確保 item 有效
@@ -232,13 +233,19 @@ export class AuthService {
           subFuncMenuList: [],
         };
         menuList.push(menu);
+        parentMap.set(item.funcCode, menu);
       } else {
-        // 將子項目添加到最後一個主菜單的 subFuncMenuList 中
-        const lastMenu = menuList[menuList.length - 1];
-        if (lastMenu) {
-          lastMenu.subFuncMenuList.push(item);
+        const parentMenu = item.parentCode ? parentMap.get(item.parentCode) : undefined;
+        if (parentMenu) {
+          parentMenu.subFuncMenuList.push(item);
         } else {
-          console.warn('[AuthService] 找不到父選單，無法加入子選單', item);
+          // 後端未提供 parentCode 時，保留舊資料相容行為。
+          const lastMenu = menuList[menuList.length - 1];
+          if (lastMenu) {
+            lastMenu.subFuncMenuList.push(item);
+          } else {
+            console.warn('[AuthService] 找不到父選單，無法加入子選單', item);
+          }
         }
       }
     });

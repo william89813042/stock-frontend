@@ -1,116 +1,117 @@
 <mat-card class="top-card">
-  <!-- 標題 -->
   <mat-card-header class="card-header">
     <h2>{{ "0101.title.upd" | translate }}</h2>
   </mat-card-header>
-  <!-- 分隔線 -->
   <mat-divider></mat-divider>
 
-  <!--==========站點資訊==========  -->
   <mat-card-content>
     <form [formGroup]="validateForm">
       <div class="top-container">
-        <h3>{{ "0101.stationInfo" | translate }}</h3>
+        <h3>{{ "0101.stockInfo" | translate }}</h3>
 
-        <!-- =====第一列===== -->
         <div class="top-row">
-          <!-- 站點代碼 -->
           <div class="top-item">
-            <label for="station">
-              <span class="required-input">&nbsp; </span>
-              {{ "0101.station" | translate }}：
+            <label for="stockCode">
+              <span class="required-input">* </span>
+              {{ "0101.stockCode" | translate }}：
             </label>
-            <mat-form-field>
-              <input readonly matInput formControlName="station"/>
+            <mat-form-field appearance="outline">
+              <input id="stockCode" matInput formControlName="stockCode" maxlength="4" />
+              @if (validateForm.get('stockCode')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
             </mat-form-field>
           </div>
 
-          <!-- 站點名稱 -->
           <div class="top-item">
-            <label for="stationName">
+            <label for="stockName">
               <span class="required-input">* </span>
-              {{ "0101.stationName" | translate }}：
+              {{ "0101.stockName" | translate }}：
+            </label>
+            <mat-form-field appearance="outline">
+              <input id="stockName" matInput formControlName="stockName" maxlength="50" />
+              @if (validateForm.get('stockName')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="top-row">
+          <div class="top-item">
+            <label for="purchaseDate">
+              <span class="required-input">* </span>
+              {{ "0101.purchaseDate" | translate }}：
+            </label>
+            <mat-form-field appearance="outline">
+              <input id="purchaseDate" matInput type="datetime-local" formControlName="purchaseDate" />
+              @if (validateForm.get('purchaseDate')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="top-item">
+            <label for="purchaseQuantity">
+              <span class="required-input">* </span>
+              {{ "0101.purchaseQuantity" | translate }}：
             </label>
             <mat-form-field appearance="outline">
               <input
+                id="purchaseQuantity"
                 matInput
-                formControlName="stationName"
-                maxlength="50"
-                [placeholder]="'common.warn.string.value.max' | translate : { value: '50' }"
+                type="number"
+                min="1"
+                formControlName="purchaseQuantity"
+                (input)="recalcTotalCost()"
               />
-              <!-- 顯示目前輸入字數 -->
-              <mat-hint align="end">
-                {{ validateForm.get("stationName")?.value?.length || 0 }}/50
-              </mat-hint>
-              @if (validateForm.get('stationName')?.hasError('required')) {
-                <mat-error>
-                  {{ "common.warn.field.required" | translate }}
-                </mat-error>
+              @if (validateForm.get('purchaseQuantity')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
               }
             </mat-form-field>
           </div>
-        </div>
 
-        <!-- =====第二列===== -->
-        <div class="top-row">
-          <!--站點種類 -->
           <div class="top-item">
-            <label for="stationKind">
+            <label for="purchasePrice">
               <span class="required-input">* </span>
-              {{ "0101.stationKind" | translate }}：
+              {{ "0101.purchasePrice" | translate }}：
             </label>
             <mat-form-field appearance="outline">
-              <mat-select formControlName="stationKind">
-                <mat-option [value]="'NEC'"
-                >{{ "0101.nec" | translate }}
-                </mat-option>
-                <mat-option [value]="'BR'"
-                >{{ "0101.br" | translate }}
-                </mat-option>
-                <mat-option [value]="'EJ'"
-                >{{ "0101.ej" | translate }}
-                </mat-option>
-              </mat-select>
-              @if (validateForm.get('stationKind')?.hasError('required')) {
-                <mat-error>
-                  {{ "common.warn.field.required" | translate }}
-                </mat-error>
+              <input
+                id="purchasePrice"
+                matInput
+                type="number"
+                min="0.01"
+                step="0.01"
+                formControlName="purchasePrice"
+                (input)="recalcTotalCost()"
+              />
+              @if (validateForm.get('purchasePrice')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
               }
             </mat-form-field>
           </div>
-
-          <!-- 啟用狀態 -->
-          <div class="top-item">
-            <label for="isActive">
-              <span class="required-input">* </span>
-              {{ "0101.isActive" | translate }}：
-            </label>
-            <mat-radio-group
-              formControlName="isActive"
-              color="primary"
-              class="radio-group"
-            >
-              <mat-radio-button [value]="true">
-                {{ "common.active" | translate }}
-              </mat-radio-button>
-              <mat-radio-button [value]="false">
-                {{ "common.disable" | translate }}
-              </mat-radio-button>
-            </mat-radio-group>
-            @if (validateForm.get('isActive')?.hasError('required')) {
-              <mat-error>
-                {{ "common.warn.field.required" | translate }}
-              </mat-error>
-            }
-          </div>
         </div>
 
+        <div class="top-row">
+          <div class="top-item">
+            <label for="purchaseTotalCost">
+              <span class="required-input">* </span>
+              {{ "0101.purchaseTotalCost" | translate }}：
+            </label>
+            <mat-form-field appearance="outline">
+              <input id="purchaseTotalCost" matInput type="number" formControlName="purchaseTotalCost" readonly />
+              @if (validateForm.get('purchaseTotalCost')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
       </div>
     </form>
   </mat-card-content>
 
   <mat-card-actions align="end">
-    <!-- 儲存按鈕 -->
     <button
       mat-raised-button
       color="primary"
@@ -120,7 +121,6 @@
     >
       {{ "common.save" | translate }}
     </button>
-    <!-- 取消按鈕 -->
     <button mat-raised-button (click)="toQry()" class="top-btn">
       {{ "common.cancel" | translate }}
     </button>

@@ -5,18 +5,23 @@ import {
   STOCK_POSITION_ADD,
   STOCK_POSITION_DEL,
   STOCK_POSITION_LIST_QUERY,
+  STOCK_POSITION_LIST_VIEW,
   STOCK_POSITION_UPD
 } from '../../../common/system-parameter';
-import {RestfulResponse} from '../../../common/vo/RestfulResponse';
-import {AppConfigService} from '../../../common/services/app-config.service';
+import { RestfulResponse } from '../../../common/vo/RestfulResponse';
+import { AppConfigService } from '../../../common/services/app-config.service';
 import {
-  AddStationRequest,
-  AddStationResponse, DelStationRequest, DelStationResponse,
-  QryStationPageResponse,
-  QryStationRequest,
-  UpdStationRequest, UpdStationResponse
+  AddStockRequest,
+  AddStockResponse,
+  DelStockRequest,
+  DelStockResponse,
+  QryStockPageResponse,
+  QryStockRequest,
+  UpdStockRequest,
+  UpdStockResponse,
+  ViewStockRequest,
+  ViewStockResponse
 } from '../body0101.interface';
-
 
 @Injectable({
   providedIn: 'root'
@@ -25,37 +30,38 @@ export class Api0101Service {
 
   constructor(private readonly http: HttpClient, private readonly config: AppConfigService) {}
 
-  /**CALL *查詢站點資訊清單By查詢條件 API*/
-  apiQryStationList(params: QryStationRequest): Observable<RestfulResponse<QryStationPageResponse>> {
-    return this.http.post<RestfulResponse<QryStationPageResponse>>(
+  apiQryStockList(params: QryStockRequest): Observable<RestfulResponse<QryStockPageResponse>> {
+    return this.http.post<RestfulResponse<QryStockPageResponse>>(
       this.config.apiUrl + STOCK_POSITION_LIST_QUERY,
       params
     );
   }
 
-  /**CALL *新增站點 API*/
-  apiAddStation(params: AddStationRequest): Observable<RestfulResponse<AddStationResponse>> {
-    return this.http.post<RestfulResponse<AddStationResponse>>(
+  apiViewStockList(params: ViewStockRequest): Observable<RestfulResponse<ViewStockResponse[]>> {
+    return this.http.post<RestfulResponse<ViewStockResponse[]>>(
+      this.config.apiUrl + STOCK_POSITION_LIST_VIEW,
+      params
+    );
+  }
+
+  apiAddStock(params: AddStockRequest): Observable<RestfulResponse<AddStockResponse>> {
+    return this.http.post<RestfulResponse<AddStockResponse>>(
       this.config.apiUrl + STOCK_POSITION_ADD,
       params
     );
   }
 
-  /**CALL *修改站點 API*/
-  apiUpdStation(params: UpdStationRequest): Observable<RestfulResponse<UpdStationResponse>> {
-    return this.http.post<RestfulResponse<UpdStationResponse>>(
+  apiUpdStock(params: UpdStockRequest): Observable<RestfulResponse<UpdStockResponse>> {
+    return this.http.post<RestfulResponse<UpdStockResponse>>(
       this.config.apiUrl + STOCK_POSITION_UPD,
       params
     );
   }
 
-  /**CALL *刪除站點 API*/
-  apiDelStation(params: DelStationRequest): Observable<RestfulResponse<DelStationResponse>> {
-    return this.http.post<RestfulResponse<DelStationResponse>>(
+  apiDelStock(params: DelStockRequest): Observable<RestfulResponse<DelStockResponse>> {
+    return this.http.post<RestfulResponse<DelStockResponse>>(
       this.config.apiUrl + STOCK_POSITION_DEL,
       params
     );
   }
-
-
 }

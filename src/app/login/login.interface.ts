@@ -7,6 +7,7 @@ export interface UserFuncMenuInfo {
   funcName: string;
   level: number;
   funcLink: string;
+  parentCode?: string | null;
 }
 
 /**
@@ -52,4 +53,3 @@ export interface RefreshUserTokenRequest extends BaseRequest {
 export interface RefreshUserTokenResponse {
   tokenPair: TokenPair;
 }
-
