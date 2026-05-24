@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { DebounceClickDirective } from '../../../../common/directives/debounce-click.directive';
@@ -23,7 +25,8 @@ import { Qry0101SearchCriteria, Store0101Service } from '../../services/store010
   imports: [
     ReactiveFormsModule, DebounceClickDirective, MatCardModule, MatDividerModule,
     MatPaginatorModule, MatButtonModule, MatDialogModule, MatTableModule,
-    MatFormFieldModule, MatInputModule, TranslateModule, DatePipe, DecimalPipe
+    MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
+    TranslateModule, DatePipe, DecimalPipe
   ],
   templateUrl: './qry0101.component.html',
   styleUrl: './qry0101.component.scss'
@@ -121,9 +124,24 @@ export class Qry0101Component implements OnInit {
     this.validateForm.reset();
   }
 
-  formatDateTimeForApi(value: string | null): string | null {
+  formatDateTimeForApi(value: string | Date | null, endOfDay = false): string | null {
     if (!value) {
       return null;
+    }
+
+    if (value instanceof Date) {
+      const date = new Date(value);
+      if (endOfDay) {
+        date.setDate(date.getDate() + 1);
+      }
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}T00:00:00`;
+    }
+
+    if (value.length === 10) {
+      return `${value}T00:00:00`;
     }
     return value.length === 16 ? `${value}:00` : value;
   }
@@ -140,7 +158,7 @@ export class Qry0101Component implements OnInit {
       stockCode: this.validateForm.get('stockCode')?.value || null,
       stockName: this.validateForm.get('stockName')?.value || null,
       startDate: this.formatDateTimeForApi(this.validateForm.get('startDate')?.value),
-      endDate: this.formatDateTimeForApi(this.validateForm.get('endDate')?.value),
+      endDate: this.formatDateTimeForApi(this.validateForm.get('endDate')?.value, true),
       pageIndex: this.pageIndex,
       pageSize: this.pageSize
     };

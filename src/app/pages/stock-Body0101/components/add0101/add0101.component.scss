@@ -83,3 +83,46 @@
 .transaction-type-item .radio-group {
   width: 100% !important;
 }
+
+
+/* Force Angular Material MDC radio colors inside this form. */
+:host ::ng-deep .radio-group .mat-mdc-radio-button {
+  --mdc-radio-selected-focus-icon-color: var(--primary) !important;
+  --mdc-radio-selected-hover-icon-color: var(--primary) !important;
+  --mdc-radio-selected-icon-color: var(--primary) !important;
+  --mdc-radio-selected-pressed-icon-color: var(--primary) !important;
+  --mdc-radio-unselected-focus-icon-color: var(--text-muted) !important;
+  --mdc-radio-unselected-hover-icon-color: var(--primary-strong) !important;
+  --mdc-radio-unselected-icon-color: var(--text-muted) !important;
+  --mdc-radio-unselected-pressed-icon-color: var(--primary-strong) !important;
+  --mat-radio-checked-ripple-color: var(--primary) !important;
+  --mat-radio-ripple-color: var(--primary) !important;
+}
+
+:host ::ng-deep .radio-group .mat-mdc-radio-button .mdc-radio__outer-circle {
+  border-color: var(--text-muted) !important;
+}
+
+:host ::ng-deep .radio-group .mat-mdc-radio-button .mdc-radio__inner-circle {
+  border-color: var(--primary) !important;
+}
+
+:host ::ng-deep .radio-group .mat-mdc-radio-button.mat-mdc-radio-checked .mdc-radio__outer-circle,
+:host ::ng-deep .radio-group .mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__outer-circle {
+  border-color: var(--primary) !important;
+}
+
+:host ::ng-deep .radio-group .mat-mdc-radio-button.mat-mdc-radio-checked .mdc-radio__inner-circle,
+:host ::ng-deep .radio-group .mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__inner-circle {
+  border-color: var(--primary) !important;
+  transform-color: var(--primary) !important;
+}
+
+:host ::ng-deep .radio-group .mdc-radio__background::before {
+  background-color: var(--primary) !important;
+}
+
+:host ::ng-deep .radio-group .mdc-label {
+  color: var(--text-main) !important;
+  font-weight: 600 !important;
+}

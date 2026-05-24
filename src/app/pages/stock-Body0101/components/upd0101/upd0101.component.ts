@@ -6,6 +6,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { QryStockResponse, UpdStockRequest } from '../../body0101.interface';
@@ -20,7 +22,7 @@ import { DialogService } from '../../../../common/dialog/dialog.service';
   imports: [
     ReactiveFormsModule, DebounceClickDirective, MatCardModule, MatDividerModule,
     MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule,
-    TranslateModule
+    TranslateModule, MatDatepickerModule, MatNativeDateModule
   ],
   templateUrl: './upd0101.component.html',
   styleUrl: './upd0101.component.scss'
@@ -49,7 +51,7 @@ export class Upd0101Component implements OnInit {
       id: [this.stockItem.id, [Validators.required]],
       stockCode: [this.stockItem.stockCode, [Validators.required, Validators.maxLength(4)]],
       stockName: [this.stockItem.stockName, [Validators.required, Validators.maxLength(50)]],
-      purchaseDate: [this.toDateTimeLocal(this.stockItem.purchaseDate), [Validators.required]],
+      purchaseDate: [this.toDate(this.stockItem.purchaseDate), [Validators.required]],
       purchaseQuantity: [this.stockItem.purchaseQuantity, [Validators.required]],
       purchasePrice: [this.stockItem.purchasePrice, [Validators.required]],
       purchaseTotalCost: [this.stockItem.purchaseTotalCost, [Validators.required]]
@@ -86,15 +88,18 @@ export class Upd0101Component implements OnInit {
     });
   }
 
-  private toDateTimeLocal(value: string | null): string | null {
-    if (!value) {
-      return null;
-    }
-    return value.substring(0, 16);
+  private toDate(value: string | null): Date | null {
+    return value ? new Date(value) : null;
   }
 
-  private formatDateTimeForApi(value: string): string {
-    return value.length === 16 ? `${value}:00` : value;
+  private formatDateTimeForApi(value: string | Date): string {
+    if (value instanceof Date) {
+      const year = value.getFullYear();
+      const month = String(value.getMonth() + 1).padStart(2, '0');
+      const day = String(value.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}T00:00:00`;
+    }
+    return value.length === 10 ? `${value}T00:00:00` : value.length === 16 ? `${value}:00` : value;
   }
 
   callApiUpdStock() {

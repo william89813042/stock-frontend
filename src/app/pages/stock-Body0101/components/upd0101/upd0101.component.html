@@ -44,7 +44,9 @@
               {{ "0101.purchaseDate" | translate }}：
             </label>
             <mat-form-field appearance="outline">
-              <input id="purchaseDate" matInput type="datetime-local" formControlName="purchaseDate" />
+              <input id="purchaseDate" matInput [matDatepicker]="purchaseDatePicker" formControlName="purchaseDate" readonly />
+              <mat-datepicker-toggle matIconSuffix [for]="purchaseDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #purchaseDatePicker></mat-datepicker>
               @if (validateForm.get('purchaseDate')?.hasError('required')) {
                 <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
               }
@@ -121,7 +123,7 @@
     >
       {{ "common.save" | translate }}
     </button>
-    <button mat-raised-button (click)="toQry()" class="top-btn">
+    <button mat-raised-button (click)="toQry()" class="top-btn secondary-btn">
       {{ "common.cancel" | translate }}
     </button>
   </mat-card-actions>

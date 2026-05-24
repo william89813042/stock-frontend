@@ -47,14 +47,18 @@
           <div class="top-item">
             <label for="startDate">{{ "0101.startDate" | translate }}：</label>
             <mat-form-field appearance="outline">
-              <input id="startDate" matInput type="datetime-local" formControlName="startDate" />
+              <input id="startDate" matInput [matDatepicker]="startDatePicker" formControlName="startDate" readonly />
+              <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #startDatePicker></mat-datepicker>
             </mat-form-field>
           </div>
 
           <div class="top-item">
             <label for="endDate">{{ "0101.endDate" | translate }}：</label>
             <mat-form-field appearance="outline">
-              <input id="endDate" matInput type="datetime-local" formControlName="endDate" />
+              <input id="endDate" matInput [matDatepicker]="endDatePicker" formControlName="endDate" readonly />
+              <mat-datepicker-toggle matIconSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #endDatePicker></mat-datepicker>
             </mat-form-field>
           </div>
         </div>
@@ -72,7 +76,7 @@
     >
       {{ "common.qry" | translate }}
     </button>
-    <button mat-raised-button (click)="resetForm()" class="top-btn">
+    <button mat-raised-button (click)="resetForm()" class="top-btn secondary-btn">
       {{ "common.reset" | translate }}
     </button>
   </mat-card-actions>

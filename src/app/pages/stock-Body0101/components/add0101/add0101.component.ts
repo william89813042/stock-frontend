@@ -7,6 +7,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Api0101Service } from '../../services/api0101.service';
@@ -21,7 +23,7 @@ import { DialogService } from '../../../../common/dialog/dialog.service';
   imports: [
     ReactiveFormsModule, DebounceClickDirective, MatCardModule, MatDividerModule,
     MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule,
-    TranslateModule, MatRadioModule
+    TranslateModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule
   ],
   templateUrl: './add0101.component.html',
   styleUrl: './add0101.component.scss'
@@ -110,11 +112,19 @@ export class Add0101Component implements OnInit {
     }
   }
 
-  private formatDateTimeForApi(value: string | null): string | null {
+  private formatDateTimeForApi(value: string | Date | null): string | null {
     if (!value) {
       return null;
     }
-    return value.length === 16 ? `${value}:00` : value;
+
+    if (value instanceof Date) {
+      const year = value.getFullYear();
+      const month = String(value.getMonth() + 1).padStart(2, '0');
+      const day = String(value.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}T00:00:00`;
+    }
+
+    return value.length === 10 ? `${value}T00:00:00` : value.length === 16 ? `${value}:00` : value;
   }
 
   private buildAddStockVo(): AddStockVo {
