@@ -1,26 +1,31 @@
 .top-card {
-  margin: 16px;
+  margin: 20px auto;
 }
 
 .top-container {
-  padding: 16px 0;
+  padding: 20px 0 0;
 }
 
 .top-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px 24px;
+  margin-bottom: 16px;
 }
 
 .top-item {
   display: flex;
-  flex: 1 1 260px;
   flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.wide-item {
+  grid-column: 1 / -1;
 }
 
 .required-input {
-  color: #d32f2f;
+  color: var(--danger, #b42318);
 }
 
 .top-btn {

@@ -1,39 +1,85 @@
-.top-card {
-  margin: 16px;
+.add-stock-card {
+  margin: 20px auto;
 }
 
-.top-container {
-  padding: 16px 0;
+.add-stock-form {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 20px 0 0;
+  box-sizing: border-box;
 }
 
-.top-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 12px;
+.add-stock-form h3 {
+  margin-bottom: 18px;
+}
+
+.add-form-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 18px 24px !important;
+  align-items: start;
+  width: 100%;
+  margin-bottom: 18px;
 }
 
 .top-item {
   display: flex;
-  flex: 1 1 260px;
   flex-direction: column;
+  gap: 8px;
+  min-width: 0;
 }
 
 .wide-item {
-  flex-basis: 100%;
+  grid-column: 1 / -1;
+}
+
+.memo-row {
+  margin-bottom: 4px;
 }
 
 .radio-group {
   display: flex;
-  gap: 16px;
-  min-height: 56px;
   align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--border-strong, #bdcbc4);
+  border-radius: 8px;
+  background: #fff;
+  box-sizing: border-box;
 }
 
 .required-input {
-  color: #d32f2f;
+  color: var(--danger, #b42318);
 }
 
 .top-btn {
   margin-left: 8px;
+}
+
+:host ::ng-deep .add-stock-card .mat-mdc-card-content {
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 20px 24px 8px !important;
+}
+
+:host ::ng-deep .add-stock-card mat-card-actions {
+  border-top: 1px solid var(--border, #d8e0dc);
+}
+
+@media (max-width: 720px) {
+  .add-form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .radio-group {
+    flex-wrap: wrap;
+    min-height: 48px;
+  }
+}
+
+.transaction-type-item .radio-group {
+  width: 100% !important;
 }

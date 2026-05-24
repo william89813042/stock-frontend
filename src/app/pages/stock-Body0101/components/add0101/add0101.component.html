@@ -1,4 +1,4 @@
-<mat-card class="top-card">
+<mat-card class="top-card add-stock-card">
   <mat-card-header class="card-header">
     <h2>{{ "0101.title.add" | translate }}</h2>
   </mat-card-header>
@@ -6,30 +6,23 @@
 
   <mat-card-content>
     <form [formGroup]="validateForm">
-      <div class="top-container">
+      <div class="top-container add-stock-form">
         <h3>{{ "0101.stockInfo" | translate }}</h3>
 
-        <div class="top-row">
-          <div class="top-item">
-            <label>
-              <span class="required-input">* </span>
-              {{ "0101.transactionType" | translate }}：
-            </label>
-            <mat-radio-group formControlName="transactionType" color="primary" class="radio-group">
-              <mat-radio-button value="BUY">{{ "0101.buy" | translate }}</mat-radio-button>
-              <mat-radio-button value="SELL">{{ "0101.sell" | translate }}</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-
-        <div class="top-row">
+        <div class="add-form-row">
           <div class="top-item">
             <label for="stockCode">
               <span class="required-input">* </span>
               {{ "0101.stockCode" | translate }}：
             </label>
             <mat-form-field appearance="outline">
-              <input id="stockCode" matInput formControlName="stockCode" maxlength="4" />
+              <input
+                id="stockCode"
+                matInput
+                formControlName="stockCode"
+                maxlength="4"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '4' }"
+              />
               <mat-hint align="end">
                 {{ validateForm.get("stockCode")?.value?.length || 0 }}/4
               </mat-hint>
@@ -45,7 +38,13 @@
               {{ "0101.stockName" | translate }}：
             </label>
             <mat-form-field appearance="outline">
-              <input id="stockName" matInput formControlName="stockName" maxlength="50" />
+              <input
+                id="stockName"
+                matInput
+                formControlName="stockName"
+                maxlength="50"
+                [placeholder]="'common.qry.input.like' | translate : { value: '50' }"
+              />
               <mat-hint align="end">
                 {{ validateForm.get("stockName")?.value?.length || 0 }}/50
               </mat-hint>
@@ -57,7 +56,18 @@
         </div>
 
         @if (isBuy) {
-          <div class="top-row">
+          <div class="add-form-row">
+            <div class="top-item transaction-type-item">
+              <label>
+                <span class="required-input">* </span>
+                {{ "0101.transactionType" | translate }}：
+              </label>
+              <mat-radio-group formControlName="transactionType" color="primary" class="radio-group">
+                <mat-radio-button value="BUY">{{ "0101.buy" | translate }}</mat-radio-button>
+                <mat-radio-button value="SELL">{{ "0101.sell" | translate }}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
             <div class="top-item">
               <label for="purchaseDate">
                 <span class="required-input">* </span>
@@ -70,7 +80,9 @@
                 }
               </mat-form-field>
             </div>
+          </div>
 
+          <div class="add-form-row">
             <div class="top-item">
               <label for="purchaseQuantity">
                 <span class="required-input">* </span>
@@ -98,7 +110,18 @@
             </div>
           </div>
         } @else {
-          <div class="top-row">
+          <div class="add-form-row">
+            <div class="top-item transaction-type-item">
+              <label>
+                <span class="required-input">* </span>
+                {{ "0101.transactionType" | translate }}：
+              </label>
+              <mat-radio-group formControlName="transactionType" color="primary" class="radio-group">
+                <mat-radio-button value="BUY">{{ "0101.buy" | translate }}</mat-radio-button>
+                <mat-radio-button value="SELL">{{ "0101.sell" | translate }}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
             <div class="top-item">
               <label for="saleDate">
                 <span class="required-input">* </span>
@@ -111,7 +134,9 @@
                 }
               </mat-form-field>
             </div>
+          </div>
 
+          <div class="add-form-row">
             <div class="top-item">
               <label for="saleQuantity">
                 <span class="required-input">* </span>
@@ -140,7 +165,7 @@
           </div>
         }
 
-        <div class="top-row">
+        <div class="add-form-row memo-row">
           <div class="top-item wide-item">
             <label for="memo">{{ "0101.memo" | translate }}：</label>
             <mat-form-field appearance="outline">

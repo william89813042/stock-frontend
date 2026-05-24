@@ -792,3 +792,373 @@ border-radius: 4px;
 .mat-mdc-form-field-icon-suffix {
   width: 18px !important;
 }
+
+
+// ============== 2026 stock UI refresh ==============
+:root {
+  --app-bg: #f8fbf9;
+  --surface: #ffffff;
+  --surface-soft: #f3faf6;
+  --border: #dcebe3;
+  --border-strong: #bdd8ca;
+  --text-main: #1d2b26;
+  --text-muted: #63766e;
+  --primary: #3f8f76;
+  --primary-strong: #2f6f5c;
+  --primary-soft: #e8f7f0;
+  --danger: #b42318;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+html,
+body {
+  color: var(--text-main) !important;
+  background: var(--app-bg) !important;
+  font-family: Roboto, "Helvetica Neue", "Noto Sans TC", Arial, sans-serif !important;
+}
+
+.container {
+  height: calc(100vh - 64px) !important;
+}
+
+mat-toolbar,
+.mat-toolbar {
+  min-height: 64px !important;
+  background: #fff !important;
+  color: var(--text-main) !important;
+  box-shadow: none !important;
+}
+
+.mat-toolbar span:not(.spacer):not(.brand-mark):not(.menu-glyph) {
+  color: var(--text-main) !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+.mat-toolbar h5 {
+  margin: 0 !important;
+  border: 1px solid var(--border) !important;
+  background: var(--surface-soft) !important;
+  color: var(--text-muted) !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.logo {
+  display: none !important;
+}
+
+mat-sidenav {
+  width: 248px !important;
+  background: #fff !important;
+}
+
+mat-sidenav-content {
+  padding: 20px !important;
+  background: var(--app-bg) !important;
+}
+
+.mat-expansion-panel {
+  box-shadow: none !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.mat-expansion-panel-header {
+  height: 48px !important;
+  padding: 0 18px !important;
+  border-bottom: 0 !important;
+  background: #fff !important;
+  color: var(--text-main) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover,
+.mat-expansion-panel-header.mat-expanded:focus,
+.mat-expansion-panel-header.mat-expanded:hover {
+  background: var(--surface-soft) !important;
+}
+
+.mat-expansion-indicator::after {
+  color: var(--text-muted) !important;
+}
+
+.mat-expansion-panel-body {
+  width: auto !important;
+  padding: 4px 10px 10px !important;
+  background: #fff !important;
+}
+
+.mdc-list-item {
+  min-height: 40px !important;
+  margin: 2px 0 !important;
+  padding: 0 10px !important;
+  border-radius: 6px !important;
+}
+
+.mdc-list-item__primary-text {
+  color: var(--text-muted) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+
+.mdc-list-item:hover,
+.active-link {
+  background: var(--primary-soft) !important;
+  border-left: 3px solid var(--primary) !important;
+}
+
+.mdc-list-item:hover .mdc-list-item__primary-text,
+.active-link .mdc-list-item__primary-text {
+  color: var(--primary-strong) !important;
+}
+
+.top-card,
+.content-card {
+  max-width: 1480px;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  background: var(--surface) !important;
+  box-shadow: var(--shadow-sm) !important;
+  overflow: hidden !important;
+}
+
+.top-card .card-header {
+  min-height: 56px;
+  padding: 0 24px !important;
+  background: var(--primary) !important;
+  color: #fff !important;
+  align-items: center !important;
+}
+
+.top-card .card-header h2,
+.content-card .container-header h3 {
+  margin: 0 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+.top-card .card-header h2 {
+  color: #fff !important;
+  font-size: 20px !important;
+}
+
+.mat-mdc-card-content {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 20px 24px 8px !important;
+}
+
+.mat-mdc-card-content h3 {
+  margin: 0 0 16px !important;
+  color: var(--text-main) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+label {
+  width: auto !important;
+  padding-right: 0 !important;
+  color: var(--text-muted) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+.mat-mdc-form-field {
+  width: 100% !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  border-radius: 8px !important;
+  background: #fff !important;
+}
+
+.mdc-text-field--outlined {
+  padding: 0 12px !important;
+}
+
+.mat-mdc-form-field-infix,
+.mdc-text-field--outlined .mat-mdc-form-field-infix,
+.mdc-text-field--no-label .mat-mdc-form-field-infix {
+  min-height: auto !important;
+  padding: 10px 0 !important;
+}
+
+mat-error {
+  font-size: 12px !important;
+  white-space: normal !important;
+}
+
+.required-input {
+  color: var(--danger) !important;
+}
+
+.mat-mdc-card-actions {
+  gap: 10px;
+  padding: 12px 24px 20px !important;
+}
+
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button {
+  border-radius: 6px !important;
+  letter-spacing: 0 !important;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  --mdc-protected-button-container-color: var(--primary) !important;
+  --mdc-protected-button-label-text-color: #fff !important;
+}
+
+.mat-mdc-raised-button.mat-warn {
+  --mdc-protected-button-container-color: var(--danger) !important;
+  --mdc-protected-button-label-text-color: #fff !important;
+}
+
+.container-header {
+  gap: 12px;
+  margin-bottom: 16px !important;
+}
+
+.table-scroll {
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  overflow: auto !important;
+}
+
+table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+tr[mat-header-row] {
+  height: 48px !important;
+  background: var(--primary-soft) !important;
+  color: var(--text-main) !important;
+  font-size: 14px !important;
+}
+
+.mat-mdc-header-cell {
+  border-bottom: 1px solid var(--border-strong) !important;
+  color: var(--text-main) !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+}
+
+.mat-mdc-cell {
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--text-main) !important;
+  text-align: left !important;
+  vertical-align: middle !important;
+}
+
+.mat-mdc-row {
+  height: 52px !important;
+}
+
+.mat-mdc-row:hover {
+  border-left: 0 !important;
+  background: var(--surface-soft) !important;
+}
+
+.mat-mdc-paginator {
+  margin-bottom: 12px !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  background: var(--surface-soft) !important;
+}
+
+.mat-mdc-paginator-container {
+  min-height: 48px !important;
+  padding: 0 12px !important;
+}
+
+.table-nodata {
+  color: var(--text-muted) !important;
+  font-size: 15px !important;
+  font-style: normal !important;
+}
+
+@media (max-width: 768px) {
+  mat-sidenav-content {
+    padding: 12px !important;
+  }
+
+  .mat-toolbar h5 {
+    display: none !important;
+  }
+
+  .mat-toolbar span:not(.spacer):not(.brand-mark):not(.menu-glyph) {
+    font-size: 17px !important;
+  }
+
+  .mat-mdc-card-content {
+    padding: 16px !important;
+  }
+}
+
+
+// Keep section titles aligned after Material header wrapping.
+.top-card .mat-mdc-card-header-text {
+  width: 100% !important;
+}
+
+.top-card .card-header h2 {
+  margin-right: auto !important;
+  text-align: left !important;
+}
+
+
+// Non-blue enterprise palette overrides.
+.brand-mark {
+  background: var(--primary) !important;
+}
+
+.top-card .card-header {
+  background: var(--primary) !important;
+}
+
+.mat-mdc-radio-button.mat-primary {
+  --mdc-radio-selected-focus-icon-color: var(--primary) !important;
+  --mdc-radio-selected-hover-icon-color: var(--primary) !important;
+  --mdc-radio-selected-icon-color: var(--primary) !important;
+  --mdc-radio-selected-pressed-icon-color: var(--primary) !important;
+  --mat-radio-checked-ripple-color: var(--primary) !important;
+}
+
+.stock-info-row {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+}
+
+
+// Replace the older blue image backgrounds with the refreshed neutral base.
+.login_page,
+.page_404,
+.home_bg {
+  background: var(--app-bg) !important;
+}
+
+
+// Brighter visual tone.
+.top-card .card-header {
+  background: #3f8f76 !important;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  --mdc-protected-button-container-color: #3f8f76 !important;
+}
+
+.table-scroll,
+.mat-mdc-paginator,
+.radio-group {
+  box-shadow: 0 1px 2px rgba(31, 90, 72, 0.06) !important;
+}

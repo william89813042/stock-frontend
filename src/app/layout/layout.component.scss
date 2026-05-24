@@ -1,0 +1,74 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: var(--app-bg, #f4f7fb);
+}
+
+mat-toolbar {
+  gap: 12px;
+  border-bottom: 1px solid var(--border, #dbe3ef);
+}
+
+.menu-button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 8px !important;
+}
+
+.menu-glyph,
+.menu-glyph::before,
+.menu-glyph::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--text-main, #162033);
+  content: "";
+}
+
+.menu-glyph {
+  position: relative;
+}
+
+.menu-glyph::before,
+.menu-glyph::after {
+  position: absolute;
+  left: 0;
+}
+
+.menu-glyph::before {
+  top: -6px;
+}
+
+.menu-glyph::after {
+  top: 6px;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--primary, #315a8c);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.logout-btn {
+  min-width: 72px !important;
+}
+
+mat-sidenav {
+  border-right: 1px solid var(--border, #dbe3ef);
+}
+
+mat-sidenav-content {
+  min-height: calc(100vh - 64px);
+}
