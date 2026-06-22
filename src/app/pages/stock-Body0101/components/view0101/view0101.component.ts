@@ -1,5 +1,5 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -23,6 +23,7 @@ import { LoadingService } from '../../../../common/loading/loading.service';
     MatTableModule, DatePipe, DecimalPipe
   ],
   templateUrl: './view0101.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './view0101.component.scss'
 })
 export class View0101Component implements OnInit {

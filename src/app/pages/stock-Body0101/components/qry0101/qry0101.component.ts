@@ -1,5 +1,5 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -29,6 +29,7 @@ import { Qry0101SearchCriteria, Store0101Service } from '../../services/store010
     TranslateModule, DatePipe, DecimalPipe
   ],
   templateUrl: './qry0101.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './qry0101.component.scss'
 })
 export class Qry0101Component implements OnInit {

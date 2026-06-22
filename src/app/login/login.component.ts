@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Router} from '@angular/router';
 import {ReactiveFormsModule, Validators, UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 
@@ -33,6 +33,7 @@ import {pwdStrengthValidator} from '../common/validators/pwd-strength.validator'
     MatInputModule, ReactiveFormsModule, TranslateModule
   ],
   templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {

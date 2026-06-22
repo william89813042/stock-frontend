@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {Router, RouterModule, RouterOutlet} from '@angular/router';
 
 //material
@@ -38,6 +38,7 @@ import {DebounceClickDirective} from '../common/directives/debounce-click.direct
     RouterModule
   ],
   templateUrl: './layout.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {

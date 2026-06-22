@@ -15,7 +15,7 @@ import zh from '@angular/common/locales/zh';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 
 // HTTP攔截器相關設定
-import {HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
 import {TokenInterceptor} from './common/interceptor/token.interceptor';
 import {ApiInterceptor} from './common/interceptor/api.interceptor';
 import { AppConfigService } from './common/services/app-config.service';
@@ -42,7 +42,7 @@ export const appConfig: ApplicationConfig = {
       translate.setDefaultLang('zh-TW');  // 設定預設語言
       translate.use('zh-TW');             // 立即使用繁體中文
     }),
-    provideHttpClient(withInterceptorsFromDi()), // 提供 HTTP Client 並加上攔截器
+    provideHttpClient(withXhr(), withInterceptorsFromDi()), // 提供 HTTP Client 並加上攔截器
     // 配置 HTTP Interceptor
     {
       provide: HTTP_INTERCEPTORS,

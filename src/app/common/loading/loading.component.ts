@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {CommonModule} from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -15,6 +15,7 @@ import {LoadingService} from './loading.service';
     ]),
   ],
   templateUrl: './loading.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './loading.component.scss'
 })
 export class LoadingComponent {

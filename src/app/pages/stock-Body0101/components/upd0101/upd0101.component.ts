@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -25,6 +25,7 @@ import { DialogService } from '../../../../common/dialog/dialog.service';
     TranslateModule, MatDatepickerModule, MatNativeDateModule
   ],
   templateUrl: './upd0101.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './upd0101.component.scss'
 })
 export class Upd0101Component implements OnInit {

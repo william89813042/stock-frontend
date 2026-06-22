@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {LoadingComponent} from './common/loading/loading.component';
 
@@ -6,6 +6,7 @@ import {LoadingComponent} from './common/loading/loading.component';
   selector: 'app-root',
   imports: [RouterOutlet, LoadingComponent],
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.css'
 })
 export class App {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Router} from '@angular/router';
 import {ReactiveFormsModule, Validators, UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 
@@ -43,6 +43,7 @@ import {ApiChangePdService} from './api-changePd.service';
     TranslateModule
   ],
   templateUrl: './changePd.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './changePd.component.scss'
 })
 export class ChangePdComponent implements OnInit {
