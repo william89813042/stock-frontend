@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // 使用 formBuilder初始化表單
     this.validateForm = this.formBuilder.group({
-      userId: [null, [Validators.required, Validators.maxLength(50)]],
+      userId: [null, [Validators.required, Validators.maxLength(20)]],
       userPd: [null, [Validators.required, Validators.maxLength(50), pwdStrengthValidator()]]
     });
 
@@ -85,6 +85,11 @@ export class LoginComponent implements OnInit {
   /**跳轉至註冊頁 */
   toRegister() {
     this.router.navigateByUrl('/register');
+  }
+
+  /**跳轉至忘記密碼頁 */
+  toForgotPd() {
+    this.router.navigateByUrl('/forgotPd');
   }
 
   // ================CALL API=================

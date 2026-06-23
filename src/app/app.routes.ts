@@ -13,6 +13,11 @@ export const routes: Routes = [
       import('./register/register.component').then((m) => m.RegisterComponent),
   },
   {
+    path: 'forgotPd',
+    loadComponent: () =>
+      import('./forgotPd/forgotPd.component').then((m) => m.ForgotPdComponent),
+  },
+  {
     path: 'changePd',
     loadComponent: () =>
       import('./changePd/changePd.component').then((m) => m.ChangePdComponent),

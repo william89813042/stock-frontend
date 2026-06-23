@@ -60,9 +60,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm = this.formBuilder.group(
       {
-        userId: [null, [Validators.required, Validators.maxLength(10)]],
+        userId: [null, [Validators.required, Validators.maxLength(20)]],
         userName: [null, [Validators.required, Validators.maxLength(250)]],
         email: [null, [Validators.required, Validators.email, Validators.maxLength(500)]],
+        phoneNumber: [
+          null,
+          [Validators.required, Validators.maxLength(10), Validators.pattern(/^09\d{8}$/)],
+        ],
         userPd: [
           null,
           [Validators.required, Validators.maxLength(100), pwdStrengthValidator()],
@@ -108,6 +112,7 @@ export class RegisterComponent implements OnInit {
       userId: this.validateForm.get('userId')?.value,
       userName: this.validateForm.get('userName')?.value,
       email: this.validateForm.get('email')?.value,
+      phoneNumber: this.validateForm.get('phoneNumber')?.value,
       userPd: this.validateForm.get('userPd')?.value,
     };
 

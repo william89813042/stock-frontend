@@ -17,8 +17,8 @@
               <input
                 matInput
                 formControlName="userId"
-                maxlength="50"
-                [placeholder]="'common.warn.string.value.max' | translate : { value: '50' }"
+                maxlength="20"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '20' }"
               />
               @if (validateForm.get('userId')?.hasError('required')) {
                 <mat-error>
@@ -84,6 +84,14 @@
           (debounceClick)="toRegister()"
         >
           {{ "002.link.register" | translate }}
+        </button>
+        <button
+          mat-raised-button
+          appDebounceClick
+          class="top-btn"
+          (debounceClick)="toForgotPd()"
+        >
+          {{ "003.link.forgotPd" | translate }}
         </button>
       </mat-card-actions>
     </mat-card>

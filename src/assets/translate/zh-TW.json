@@ -115,6 +115,7 @@
   "common.warn.pwd.tooShort": "密碼長度至少為8碼",
   "common.warn.pwd.tooWeak": "密碼需包含英文大小寫、數字、特殊符號其中三種",
   "common.warn.pwd.mismatch": "兩次輸入的密碼不一致",
+  "common.warn.phoneNumber": "手機號碼格式不正確，請輸入 09 開頭的 10 碼數字",
   "common.warn.email": "電子郵件格式不正確，請檢查後再試",
   "common.warn.field.requireMatch": "請從清單中選擇一個有效的選項",
   "common.warn.field.requireSelect": "請從列表中選一項",
@@ -158,10 +159,20 @@
   "002.userId": "使用者帳號",
   "002.userName": "使用者名稱",
   "002.email": "電子郵件",
+  "002.phoneNumber": "手機號碼",
   "002.userPd": "使用者密碼",
   "002.userPdConfirm": "確認密碼",
   "002.register": "建立帳號",
   "002.success.register": "帳號已建立，現在可以直接登入。",
+
+  "_comment_003": "===============0003 忘記密碼作業==============",
+  "003.title": "忘記密碼",
+  "003.link.forgotPd": "忘記密碼",
+  "003.desc": "請輸入你註冊時使用的電子郵件與手機號碼，系統會寄送一組臨時密碼到你的信箱。",
+  "003.email": "電子郵件",
+  "003.phoneNumber": "手機號碼",
+  "003.submit": "寄送臨時密碼",
+  "003.success.forgotPd": "若資料正確，系統已寄出臨時密碼至你的電子郵件。",
 
   "_comment_0101": "===============0101 股票倉位系統==============",
 
