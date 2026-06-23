@@ -83,6 +83,10 @@ export class LoginComponent implements OnInit {
 
   }
 
+  toRegister() {
+    this.router.navigateByUrl('/register');
+  }
+
   // ================CALL API=================
 
   /**使用者AD登入 */

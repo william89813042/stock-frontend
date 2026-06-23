@@ -25,6 +25,8 @@ export const TOKEN_MISMATCH = '80004';
 
 /**使用者AD登入url*/
 export const USER_LOGIN = '/user-login/login';
+/**使用者註冊url*/
+export const USER_REGISTER = '/user-login/register';
 /**使用者令牌刷新url*/
 export const USER_TOKEN_REFRESH = '/user-login/token-refresh';
 /**使用者變更密碼url*/
@@ -48,6 +50,5 @@ export const STOCK_POSITION_UPD = '/stockPosition/upd';
 
 /**刪除股票倉位url*/
 export const STOCK_POSITION_DEL = '/stockPosition/del';
-
 
 

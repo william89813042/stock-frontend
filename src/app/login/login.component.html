@@ -77,6 +77,14 @@
         >
           {{ "login.title" | translate }}
         </button>
+        <button
+          mat-raised-button
+          appDebounceClick
+          class="top-btn"
+          (debounceClick)="toRegister()"
+        >
+          {{ "002.link.register" | translate }}
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
