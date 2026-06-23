@@ -1,0 +1,150 @@
+<div class="login_page">
+  <mat-divider></mat-divider>
+  <div class="login_box">
+    <mat-card class="login-card">
+      <mat-card-content>
+        <form class="register-form" [formGroup]="validateForm" autocomplete="off" method="post">
+          <h2 class="login_title">{{ "002.title" | translate }}</h2>
+
+          <div class="input-group">
+            <label for="userId"
+              ><span class="required-input">* </span>{{ "002.userId" | translate }}：</label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="userId"
+                maxlength="10"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '10' }"
+              />
+              @if (validateForm.get('userId')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+              @if (validateForm.get('userId')?.hasError('maxlength')) {
+                <mat-error>{{ "common.warn.string.value.max" | translate : { value: '10' } }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="input-group">
+            <label for="userName"
+              ><span class="required-input">* </span>{{ "002.userName" | translate }}：</label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="userName"
+                maxlength="250"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '250' }"
+              />
+              @if (validateForm.get('userName')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+              @if (validateForm.get('userName')?.hasError('maxlength')) {
+                <mat-error>{{ "common.warn.string.value.max" | translate : { value: '250' } }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="input-group">
+            <label for="email"
+              ><span class="required-input">* </span>{{ "002.email" | translate }}：</label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                type="email"
+                formControlName="email"
+                maxlength="500"
+                placeholder="name@example.com"
+              />
+              @if (validateForm.get('email')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+              @if (validateForm.get('email')?.hasError('email')) {
+                <mat-error>{{ "common.warn.email" | translate }}</mat-error>
+              }
+              @if (validateForm.get('email')?.hasError('maxlength')) {
+                <mat-error>{{ "common.warn.string.value.max" | translate : { value: '500' } }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="input-group">
+            <label for="userPd"
+              ><span class="required-input">* </span>{{ "002.userPd" | translate }}：</label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                type="password"
+                autocomplete="off"
+                formControlName="userPd"
+                maxlength="100"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '100' }"
+              />
+              @if (validateForm.get('userPd')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+              @if (validateForm.get('userPd')?.hasError('invalidCharacters')) {
+                <mat-error>{{ "common.warn.pwd.invalidCharacters" | translate }}</mat-error>
+              }
+              @if (validateForm.get('userPd')?.hasError('passwordTooShort')) {
+                <mat-error>{{ "common.warn.pwd.tooShort" | translate }}</mat-error>
+              }
+              @if (validateForm.get('userPd')?.hasError('passwordTooWeak')) {
+                <mat-error>{{ "common.warn.pwd.tooWeak" | translate }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="input-group">
+            <label for="userPdConfirm"
+              ><span class="required-input">* </span>{{ "002.userPdConfirm" | translate }}：</label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                type="password"
+                autocomplete="off"
+                formControlName="userPdConfirm"
+                maxlength="100"
+                [placeholder]="'common.warn.string.value.max' | translate : { value: '100' }"
+              />
+              @if (validateForm.get('userPdConfirm')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+              @if (validateForm.get('userPdConfirm')?.hasError('invalidCharacters')) {
+                <mat-error>{{ "common.warn.pwd.invalidCharacters" | translate }}</mat-error>
+              }
+              @if (validateForm.get('userPdConfirm')?.hasError('passwordTooShort')) {
+                <mat-error>{{ "common.warn.pwd.tooShort" | translate }}</mat-error>
+              }
+              @if (validateForm.get('userPdConfirm')?.hasError('passwordTooWeak')) {
+                <mat-error>{{ "common.warn.pwd.tooWeak" | translate }}</mat-error>
+              }
+              @if (validateForm.hasError('passwordMismatch')) {
+                <mat-error>{{ "common.warn.pwd.mismatch" | translate }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions class="login-btn">
+        <button
+          mat-raised-button
+          color="primary"
+          appDebounceClick
+          class="top-btn"
+          (debounceClick)="submitForm()"
+        >
+          {{ "002.register" | translate }}
+        </button>
+        <button mat-raised-button appDebounceClick class="top-btn" (debounceClick)="toLogin()">
+          {{ "login.title" | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
