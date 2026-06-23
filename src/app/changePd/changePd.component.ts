@@ -25,6 +25,7 @@ import {DialogService} from '../common/dialog/dialog.service';
 import {DebounceClickDirective} from '../common/directives/debounce-click.directive';
 
 import {ChangePdRequest} from './changePd.interface';
+import {passwordMatchValidator} from '../common/validators/password-match.validator';
 import {pwdStrengthValidator} from '../common/validators/pwd-strength.validator';
 import {ApiChangePdService} from './api-changePd.service';
 
@@ -72,15 +73,20 @@ export class ChangePdComponent implements OnInit {
 
   ngOnInit() {
     // 使用 formBuilder初始化表單
-    this.validateForm = this.formBuilder.group({
-      userPdOld: [null, [Validators.required, Validators.maxLength(50)]],
-      userPdNew: [null, [Validators.required, Validators.maxLength(50), pwdStrengthValidator()]],
-      userPdConfirm: [null, [Validators.required, Validators.maxLength(50), pwdStrengthValidator()]]
-    });
+    this.validateForm = this.formBuilder.group(
+      {
+        userPdOld: [null, [Validators.required, Validators.maxLength(50)]],
+        userPdNew: [null, [Validators.required, Validators.maxLength(50), pwdStrengthValidator()]],
+        userPdConfirm: [null, [Validators.required, Validators.maxLength(50), pwdStrengthValidator()]]
+      },
+      {
+        validators: passwordMatchValidator('userPdNew', 'userPdConfirm')
+      }
+    );
   }
 
 
-  /**送出登入 */
+  /**送出變更密碼 */
   submitForm() {
     this.validateForm.markAllAsTouched(); // 標記所有控件為 "觸及"
     if (!this.validateForm.valid) {
@@ -130,6 +136,5 @@ export class ChangePdComponent implements OnInit {
 
   }
 }
-
 
 

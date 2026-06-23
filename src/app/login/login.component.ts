@@ -56,10 +56,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // 使用 formBuilder初始化表單
-    // TODO: 移除帳號密碼
     this.validateForm = this.formBuilder.group({
-      userId: ['ADMIN', [Validators.required, Validators.maxLength(50)]],
-      userPd: ['Admin123', [Validators.required, Validators.maxLength(50), pwdStrengthValidator()]]
+      userId: [null, [Validators.required, Validators.maxLength(50)]],
+      userPd: [null, [Validators.required, Validators.maxLength(50), pwdStrengthValidator()]]
     });
 
   }
@@ -83,6 +82,7 @@ export class LoginComponent implements OnInit {
 
   }
 
+  /**跳轉至註冊頁 */
   toRegister() {
     this.router.navigateByUrl('/register');
   }
@@ -97,7 +97,6 @@ export class LoginComponent implements OnInit {
       userId: userId,
       userPd: userPd
     };
-    console.log('req', req);
     const apiQuery$ = this.apiLogin.apiLogin(req);
 
     //當發送api時，調用加載器

@@ -114,6 +114,7 @@
   "common.warn.pwd.invalidCharacters": "密碼只能包含英文字母、數字與常用特殊符號!@#$%^&*",
   "common.warn.pwd.tooShort": "密碼長度至少為8碼",
   "common.warn.pwd.tooWeak": "密碼需包含英文大小寫、數字、特殊符號其中三種",
+  "common.warn.pwd.mismatch": "兩次輸入的密碼不一致",
   "common.warn.email": "電子郵件格式不正確，請檢查後再試",
   "common.warn.field.requireMatch": "請從清單中選擇一個有效的選項",
   "common.warn.field.requireSelect": "請從列表中選一項",
@@ -160,7 +161,6 @@
   "002.userPd": "使用者密碼",
   "002.userPdConfirm": "確認密碼",
   "002.register": "建立帳號",
-  "002.warn.passwordMismatch": "兩次輸入的密碼不一致",
   "002.success.register": "帳號已建立，現在可以直接登入。",
 
   "_comment_0101": "===============0101 股票倉位系統==============",

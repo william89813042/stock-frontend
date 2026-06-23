@@ -97,6 +97,11 @@
                   {{ "common.warn.pwd.tooWeak" | translate }}
                 </mat-error>
               }
+              @if (validateForm.hasError('passwordMismatch')) {
+                <mat-error>
+                  {{ "common.warn.pwd.mismatch" | translate }}
+                </mat-error>
+              }
             </mat-form-field>
           </div>
         </form>
