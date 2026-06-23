@@ -1,0 +1,70 @@
+<div class="login_page">
+  <mat-divider></mat-divider>
+  <div class="login_box">
+    <mat-card class="login-card">
+      <mat-card-content>
+        <form class="forgot-form" [formGroup]="validateForm" autocomplete="off" method="post">
+          <h2 class="login_title">{{ "003.title" | translate }}</h2>
+
+          <div class="form-desc">{{ "003.desc" | translate }}</div>
+
+          <div class="input-group">
+            <label for="email"
+              ><span class="required-input">* </span>{{ "003.email" | translate }}：</label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                type="email"
+                formControlName="email"
+                maxlength="500"
+                placeholder="name@example.com"
+              />
+              @if (validateForm.get('email')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+              @if (validateForm.get('email')?.hasError('email')) {
+                <mat-error>{{ "common.warn.email" | translate }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="input-group">
+            <label for="phoneNumber"
+              ><span class="required-input">* </span>{{ "003.phoneNumber" | translate }}：</label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="phoneNumber"
+                maxlength="10"
+                placeholder="09xxxxxxxx"
+              />
+              @if (validateForm.get('phoneNumber')?.hasError('required')) {
+                <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
+              }
+              @if (validateForm.get('phoneNumber')?.hasError('pattern')) {
+                <mat-error>{{ "common.warn.phoneNumber" | translate }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions class="login-btn">
+        <button
+          mat-raised-button
+          color="primary"
+          appDebounceClick
+          class="top-btn"
+          (debounceClick)="submitForm()"
+        >
+          {{ "003.submit" | translate }}
+        </button>
+        <button mat-raised-button appDebounceClick class="top-btn" (debounceClick)="toLogin()">
+          {{ "login.title" | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
