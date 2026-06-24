@@ -18,7 +18,7 @@
                 type="email"
                 formControlName="email"
                 maxlength="500"
-                placeholder="name@example.com"
+                placeholder="abc123@example.com"
               />
               @if (validateForm.get('email')?.hasError('required')) {
                 <mat-error>{{ "common.warn.field.required" | translate }}</mat-error>
@@ -62,7 +62,7 @@
           {{ "003.submit" | translate }}
         </button>
         <button mat-raised-button appDebounceClick class="top-btn" (debounceClick)="toLogin()">
-          {{ "login.title" | translate }}
+          {{ "common.back" | translate }}
         </button>
       </mat-card-actions>
     </mat-card>
